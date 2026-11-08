@@ -141,13 +141,16 @@ def _partition_labels_from_circuit(
     for instruction in circuit.data:
         if ignore(instruction):
             continue
+        if instruction.operation.name == "barrier" or getattr(
+            instruction.operation, "_directive", False
+        ):
+            continue
         qubits = instruction.qubits
         for i, q1 in enumerate(qubits):
             q1_id = circuit.find_bit(q1).index
             for q2 in qubits[i + 1 :]:
                 q2_id = circuit.find_bit(q2).index
                 graph.add_edge(q1_id, q2_id, None)
-
     # Find the connected subsets of qubits.  For consistency, the subsets
     # should be sorted in ascending order according to the lowest qubit index
     # in each.
@@ -159,6 +162,10 @@ def _partition_labels_from_circuit(
         # Determine which qubit wires are idle/unused
         idle_wires = set(range(circuit.num_qubits))
         for instruction in circuit.data:
+            if instruction.operation.name == "barrier" or getattr(
+                instruction.operation, "_directive", False
+            ):
+                continue
             for q1 in instruction.qubits:
                 q1_id = circuit.find_bit(q1).index
                 idle_wires.discard(q1_id)
@@ -232,10 +239,13 @@ def _separate_instructions_by_partition(
 
         # Collect the partition labels spanned by the instruction
         partitions_spanned = set()
+        is_barrier = inst.operation.name == "barrier"
         for qubit in inst.qubits:
             j = circuit.find_bit(qubit).index
             partition_id = qubit_map[j][0]
             if partition_id is None:
+                if is_barrier:
+                    continue
                 raise ValueError(
                     f"Operation '{inst.operation.name}' at index {i} acts on the "
                     f"{j}-th qubit, which was provided a partition label of `None`. "
@@ -243,6 +253,10 @@ def _separate_instructions_by_partition(
                     "cannot be used in the circuit."
                 )
             partitions_spanned.add(partition_id)
+
+        if is_barrier and not partitions_spanned:
+            # Barrier acts exclusively on idle qubits that are removed
+            continue
 
         # Ensure that all qubits touched by the instruction belong to the same
         # partition label
