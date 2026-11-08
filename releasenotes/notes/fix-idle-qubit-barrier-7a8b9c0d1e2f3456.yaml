@@ -1,0 +1,7 @@
+---
+fixes:
+  - |
+    Fixed an issue where qubits with only barriers were considered non-idle,
+    preventing them from being identified as idle wires in
+    ``_partition_labels_from_circuit()`` and causing errors in ``separate_circuit()``
+    (#621).
