@@ -469,6 +469,24 @@ class TestTransforms(unittest.TestCase):
                 == "Operation 'x' at index 2 acts on the 1-th qubit, which was provided a partition label of `None`. If the partition label of a qubit is `None`, then that qubit cannot be used in the circuit."
             )
 
+        with self.subTest("Idle qubit with single-qubit barrier"):
+            circuit = QuantumCircuit(3)
+            circuit.h(0)
+            circuit.cx(0, 1)
+            circuit.barrier(2)
+            separated_circuits = separate_circuit(circuit)
+            assert separated_circuits.subcircuits.keys() == {0}
+            assert separated_circuits.qubit_map == [(0, 0), (0, 1), (None, None)]
+
+        with self.subTest("Idle qubit with multi-qubit barrier"):
+            circuit = QuantumCircuit(3)
+            circuit.h(0)
+            circuit.cx(0, 1)
+            circuit.barrier()
+            separated_circuits = separate_circuit(circuit)
+            assert separated_circuits.subcircuits.keys() == {0}
+            assert separated_circuits.qubit_map == [(0, 0), (0, 1), (None, None)]
+
 
 def _create_barrier_subcirc() -> QuantumCircuit:
     qc = QuantumCircuit(1)
