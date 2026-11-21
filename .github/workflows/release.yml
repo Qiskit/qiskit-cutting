@@ -9,7 +9,7 @@ jobs:
 
   github:
     name: github
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout tag
         uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
 
   pypi:
     name: pypi
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: github
     environment:
       name: pypi
