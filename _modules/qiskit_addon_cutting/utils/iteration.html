@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.utils.iteration - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># that they have been altered from the originals.</span>
 
 <span class="c1"># Reminder: update the RST file in docs/apidocs when adding new interfaces.</span>
-<span class="sd">&quot;&quot;&quot;Iteration utilities.&quot;&quot;&quot;</span>
+<span class="sd">"""Iteration utilities."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">ValuesView</span>
@@ -297,7 +297,7 @@
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">strict_zip</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Equivalent to ``zip([...], strict=True)`` where supported.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Equivalent to ``zip([...], strict=True)`` where supported."""</span>
         <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
@@ -307,14 +307,14 @@
 <div class="viewcode-block" id="unique_by_id">
 <a class="viewcode-back" href="../../../apidocs/qiskit_addon_cutting.utils.iteration.html#qiskit_addon_cutting.utils.iteration.unique_by_id">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">unique_by_id</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ValuesView</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return unique objects in ``iterable``, by identity.</span>
+<span class="w">    </span><span class="sd">"""Return unique objects in ``iterable``, by identity.</span>
 
 <span class="sd">    &gt;&gt;&gt; a = {0}</span>
 <span class="sd">    &gt;&gt;&gt; list(unique_by_id([a, a]))</span>
 <span class="sd">    [{0}]</span>
 <span class="sd">    &gt;&gt;&gt; list(unique_by_id([a, a.copy()]))</span>
 <span class="sd">    [{0}, {0}]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="p">{</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
 
 
@@ -322,7 +322,7 @@
 <div class="viewcode-block" id="unique_by_eq">
 <a class="viewcode-back" href="../../../apidocs/qiskit_addon_cutting.utils.iteration.html#qiskit_addon_cutting.utils.iteration.unique_by_eq">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">unique_by_eq</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return unique objects in ``iterable``, by equality.</span>
+<span class="w">    </span><span class="sd">"""Return unique objects in ``iterable``, by equality.</span>
 
 <span class="sd">    This function is only appropriate if (i) there are a small number of</span>
 <span class="sd">    objects, and (ii) the objects are not guaranteed to be hashable.</span>
@@ -338,7 +338,7 @@
 <span class="sd">    [{0}]</span>
 <span class="sd">    &gt;&gt;&gt; list(unique_by_eq([a, a.copy()]))</span>
 <span class="sd">    [{0}]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">rv</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">unique_by_id</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">:</span>

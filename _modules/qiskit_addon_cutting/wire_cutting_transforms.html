@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.wire_cutting_transforms - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Function to transform a :class:`.CutWire` instruction to a :class:`.Move` instruction.&quot;&quot;&quot;</span>
+<span class="sd">"""Function to transform a :class:`.CutWire` instruction to a :class:`.Move` instruction."""</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
@@ -303,7 +303,7 @@
 <div class="viewcode-block" id="cut_wires">
 <a class="viewcode-back" href="../../apidocs/qiskit_addon_cutting.html#qiskit_addon_cutting.cut_wires">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">cut_wires</span><span class="p">(</span><span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Transform all :class:`.CutWire` instructions in a circuit to :class:`.Move` instructions marked for cutting.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Transform all :class:`.CutWire` instructions in a circuit to :class:`.Move` instructions marked for cutting.</span>
 
 <span class="sd">    The returned circuit will have one newly allocated qubit for every :class:`.CutWire` instruction.</span>
 
@@ -317,7 +317,7 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        circuit: New circuit with :class:`.CutWire` instructions replaced by :class:`.Move` instructions wrapped in :class:`TwoQubitQPDGate`\ s</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">_transform_cut_wires</span><span class="p">(</span>
         <span class="n">circuit</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">TwoQubitQPDGate</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">Move</span><span class="p">())</span>
     <span class="p">)</span></div>
@@ -325,14 +325,14 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_transform_cuts_to_moves</span><span class="p">(</span><span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform all :class:`.CutWire` instructions in a circuit to :class:`.Move` instructions.</span>
+<span class="w">    </span><span class="sd">"""Transform all :class:`.CutWire` instructions in a circuit to :class:`.Move` instructions.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        circuit: Original circuit with :class:`.CutWire` instructions</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        circuit: New circuit with :class:`.CutWire` instructions replaced by :class`.Move` instructions</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">_transform_cut_wires</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">Move</span><span class="p">)</span>
 
 
@@ -344,7 +344,7 @@
     <span class="k">for</span> <span class="n">instructions</span> <span class="ow">in</span> <span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
         <span class="n">gate_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="n">instructions</span><span class="o">.</span><span class="n">qubits</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="n">instructions</span> <span class="ow">in</span> <span class="n">circuit</span><span class="o">.</span><span class="n">get_instructions</span><span class="p">(</span><span class="s2">&quot;cut_wire&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">instructions</span> <span class="ow">in</span> <span class="n">circuit</span><span class="o">.</span><span class="n">get_instructions</span><span class="p">(</span><span class="s2">"cut_wire"</span><span class="p">):</span>
             <span class="c1"># Replace cut_wire with move instruction</span>
             <span class="n">new_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
                 <span class="n">other</span><span class="o">=</span><span class="n">factory</span><span class="p">(),</span>
@@ -370,7 +370,7 @@
 
     <span class="n">cut_wire_index</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">instruction</span><span class="o">.</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">index</span>
-        <span class="k">for</span> <span class="n">instruction</span> <span class="ow">in</span> <span class="n">circuit</span><span class="o">.</span><span class="n">get_instructions</span><span class="p">(</span><span class="s2">&quot;cut_wire&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">instruction</span> <span class="ow">in</span> <span class="n">circuit</span><span class="o">.</span><span class="n">get_instructions</span><span class="p">(</span><span class="s2">"cut_wire"</span><span class="p">)</span>
     <span class="p">]</span>
     <span class="n">cut_wire_freq</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">cut_wire_index</span><span class="p">)}</span>
 
@@ -404,7 +404,7 @@
     <span class="n">final_circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PauliList</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Expand observable(s) according to the qubit mapping between ``original_circuit`` and ``final_circuit``.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Expand observable(s) according to the qubit mapping between ``original_circuit`` and ``final_circuit``.</span>
 
 <span class="sd">    The :class:`.Qubit`\ s on ``final_circuit`` must be a superset of those on</span>
 <span class="sd">    ``original_circuit``.</span>
@@ -434,11 +434,11 @@
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: ``observables`` and ``original_circuit`` have different number of qubits.</span>
 <span class="sd">        ValueError: Qubit from ``original_circuit`` cannot be found in ``final_circuit``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">observables</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">!=</span> <span class="n">original_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;The `observables` and `original_circuit` must have the same number &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;of qubits. (</span><span class="si">{</span><span class="n">observables</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">original_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="s2">"The `observables` and `original_circuit` must have the same number "</span>
+            <span class="sa">f</span><span class="s2">"of qubits. (</span><span class="si">{</span><span class="n">observables</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">original_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">)"</span>
         <span class="p">)</span>
     <span class="n">mapping</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original_circuit</span><span class="o">.</span><span class="n">qubits</span><span class="p">):</span>
@@ -446,8 +446,8 @@
             <span class="n">idx</span> <span class="o">=</span> <span class="n">final_circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">qubit</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span> <span class="n">CircuitError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th qubit of the `original_circuit` cannot be found &quot;</span>
-                <span class="s2">&quot;in the `final_circuit`.&quot;</span>
+                <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th qubit of the `original_circuit` cannot be found "</span>
+                <span class="s2">"in the `final_circuit`."</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
         <span class="n">mapping</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
     <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observables</span><span class="p">),</span> <span class="n">final_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>

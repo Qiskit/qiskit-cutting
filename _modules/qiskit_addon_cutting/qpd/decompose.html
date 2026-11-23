@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.qpd.decompose - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -284,7 +284,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Function to replace all QPD instructions in the circuit with local Qiskit operations and measurements.&quot;&quot;&quot;</span>
+<span class="sd">"""Function to replace all QPD instructions in the circuit with local Qiskit operations and measurements."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -309,7 +309,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Replace all QPD instructions in the circuit with local Qiskit operations and measurements.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Replace all QPD instructions in the circuit with local Qiskit operations and measurements.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        circuit: The circuit containing QPD instructions</span>
@@ -318,7 +318,7 @@
 <span class="sd">            common sequence belong to a common decomposition and should be sampled together.</span>
 <span class="sd">        map_ids: Indices to a specific linear mapping to be applied to the decompositions</span>
 <span class="sd">            in the circuit. If no map IDs are provided, the circuit will be decomposed randomly</span>
-<span class="sd">            according to the decompositions&#39; joint probability distribution.</span>
+<span class="sd">            according to the decompositions' joint probability distribution.</span>
 <span class="sd">        inplace: If ``True``, the ``circuit`` will be modified in place.</span>
 
 <span class="sd">    Returns:</span>
@@ -335,7 +335,7 @@
 <span class="sd">            of :class:`BaseQPDGate` instances in the circuit.</span>
 <span class="sd">        ValueError: Gates within the same decomposition hold different QPD bases.</span>
 <span class="sd">        ValueError: Length of ``map_ids`` does not equal the number of decompositions in the circuit.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">_validate_qpd_instructions</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">instruction_ids</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
@@ -344,10 +344,10 @@
     <span class="k">if</span> <span class="n">map_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">instruction_ids</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">map_ids</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The number of map IDs (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">map_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">) must equal the number of &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;decompositions in the circuit (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">instruction_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="sa">f</span><span class="s2">"The number of map IDs (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">map_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">) must equal the number of "</span>
+                <span class="sa">f</span><span class="s2">"decompositions in the circuit (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">instruction_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">)."</span>
             <span class="p">)</span>
-        <span class="c1"># If mapping is specified, set each gate&#39;s mapping</span>
+        <span class="c1"># If mapping is specified, set each gate's mapping</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">decomp_gate_ids</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">instruction_ids</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">gate_id</span> <span class="ow">in</span> <span class="n">decomp_gate_ids</span><span class="p">:</span>
                 <span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">gate_id</span><span class="p">]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">basis_id</span> <span class="o">=</span> <span class="n">map_ids</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -362,31 +362,31 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_validate_qpd_instructions</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">instruction_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure the indices in instruction_ids correctly describe all the decompositions in the circuit.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Ensure the indices in instruction_ids correctly describe all the decompositions in the circuit."""</span>
     <span class="c1"># Make sure all instruction_ids correspond to QPDGates, and make sure each QPDGate in a given decomposition has</span>
     <span class="c1"># an equivalent QPDBasis to its sibling QPDGates</span>
     <span class="k">for</span> <span class="n">decomp_ids</span> <span class="ow">in</span> <span class="n">instruction_ids</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">decomp_ids</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Each decomposition must contain either one or two elements. Found a &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;decomposition with (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">decomp_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">) elements.&quot;</span>
+                <span class="s2">"Each decomposition must contain either one or two elements. Found a "</span>
+                <span class="sa">f</span><span class="s2">"decomposition with (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">decomp_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">) elements."</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">decomp_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">BaseQPDGate</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;A circuit data index (</span><span class="si">{</span><span class="n">decomp_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) corresponds to a non-QPDGate &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">decomp_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="sa">f</span><span class="s2">"A circuit data index (</span><span class="si">{</span><span class="n">decomp_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) corresponds to a non-QPDGate "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">decomp_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)."</span>
             <span class="p">)</span>
         <span class="n">compare_basis</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">decomp_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">basis</span>
         <span class="k">for</span> <span class="n">gate_id</span> <span class="ow">in</span> <span class="n">decomp_ids</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">gate_id</span><span class="p">]</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">BaseQPDGate</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;A circuit data index (</span><span class="si">{</span><span class="n">gate_id</span><span class="si">}</span><span class="s2">) corresponds to a non-QPDGate &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">gate_id</span><span class="p">]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">).&quot;</span>
+                    <span class="sa">f</span><span class="s2">"A circuit data index (</span><span class="si">{</span><span class="n">gate_id</span><span class="si">}</span><span class="s2">) corresponds to a non-QPDGate "</span>
+                    <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">gate_id</span><span class="p">]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)."</span>
                 <span class="p">)</span>
             <span class="n">tmp_basis</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">gate_id</span><span class="p">]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">basis</span>
             <span class="k">if</span> <span class="n">compare_basis</span> <span class="o">!=</span> <span class="n">tmp_basis</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Gates within the same decomposition must share an equivalent QPDBasis.&quot;</span>
+                    <span class="s2">"Gates within the same decomposition must share an equivalent QPDBasis."</span>
                 <span class="p">)</span>
 
     <span class="c1"># Make sure the total number of QPD gate indices equals the number of QPDGates in the circuit</span>
@@ -397,35 +397,35 @@
             <span class="n">qpd_gate_total</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">qpd_gate_total</span> <span class="o">!=</span> <span class="n">num_qpd_gates</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;The total number of QPDGates specified in instruction_ids (</span><span class="si">{</span><span class="n">num_qpd_gates</span><span class="si">}</span><span class="s2">) &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;does not equal the number of QPDGates in the circuit (</span><span class="si">{</span><span class="n">qpd_gate_total</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="sa">f</span><span class="s2">"The total number of QPDGates specified in instruction_ids (</span><span class="si">{</span><span class="n">num_qpd_gates</span><span class="si">}</span><span class="s2">) "</span>
+            <span class="sa">f</span><span class="s2">"does not equal the number of QPDGates in the circuit (</span><span class="si">{</span><span class="n">qpd_gate_total</span><span class="si">}</span><span class="s2">)."</span>
         <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_decompose_qpd_measurements</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create mid-circuit measurements.</span>
+<span class="w">    </span><span class="sd">"""Create mid-circuit measurements.</span>
 
 <span class="sd">    Convert all QPDMeasure instances to Measure instructions. Add any newly created</span>
-<span class="sd">    classical bits to a new &quot;qpd_measurements&quot; register.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    classical bits to a new "qpd_measurements" register.</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="c1"># Loop through the decomposed circuit to find QPDMeasure markers so we can</span>
-    <span class="c1"># replace them with measurement instructions.  We can&#39;t use `_ids`</span>
+    <span class="c1"># replace them with measurement instructions.  We can't use `_ids`</span>
     <span class="c1"># here because it refers to old indices, before the decomposition.</span>
     <span class="n">qpd_measure_ids</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">i</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">instruction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">instruction</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;qpd_measure&quot;</span>
+        <span class="k">if</span> <span class="n">instruction</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"qpd_measure"</span>
     <span class="p">]</span>
 
     <span class="c1"># Create a classical register for the qpd measurement results.</span>
     <span class="c1"># We force at least one classical bit as a workaround to</span>
     <span class="c1"># https://github.com/openqasm/qe-qasm/issues/37.</span>
-    <span class="n">reg</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">qpd_measure_ids</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;qpd_measurements&quot;</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">qpd_measure_ids</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"qpd_measurements"</span><span class="p">)</span>
     <span class="n">circuit</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
 
     <span class="c1"># Place the measurement instructions</span>
@@ -448,7 +448,7 @@
     <span class="n">instruction_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
     <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decompose all BaseQPDGate instances, ignoring QPDMeasure().&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Decompose all BaseQPDGate instances, ignoring QPDMeasure()."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># pragma: no cover</span>
 
@@ -489,7 +489,7 @@
         <span class="c1"># Gather instructions with which we will replace the QPDGate</span>
         <span class="n">tmp_data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">definition</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="c1"># Can ignore clbits here, as QPDGates don&#39;t use clbits directly</span>
+            <span class="c1"># Can ignore clbits here, as QPDGates don't use clbits directly</span>
             <span class="k">assert</span> <span class="n">data</span><span class="o">.</span><span class="n">clbits</span> <span class="o">==</span> <span class="p">()</span>
             <span class="n">tmp_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CircuitInstruction</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">qubits</span><span class="o">=</span><span class="p">[</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
         <span class="c1"># Replace QPDGate with local operations</span>

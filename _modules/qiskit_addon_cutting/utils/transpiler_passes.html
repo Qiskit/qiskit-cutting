@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.utils.transpiler_passes - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># that they have been altered from the originals.</span>
 
 <span class="c1"># Reminder: update the RST file in docs/apidocs when adding new interfaces.</span>
-<span class="sd">&quot;&quot;&quot;Transpiler passes useful for circuit knitting.&quot;&quot;&quot;</span>
+<span class="sd">"""Transpiler passes useful for circuit knitting."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Reset</span><span class="p">,</span> <span class="n">Qubit</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.dagcircuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">DAGOpNode</span>
@@ -295,19 +295,19 @@
 <div class="viewcode-block" id="RemoveFinalReset">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset.html#qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RemoveFinalReset</span><span class="p">(</span><span class="n">TransformationPass</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove reset when it is the final instruction on a qubit wire.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Remove reset when it is the final instruction on a qubit wire."""</span>
 
 <div class="viewcode-block" id="RemoveFinalReset.run">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset.html#qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dag</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the RemoveFinalReset pass on ``dag``.</span>
+<span class="w">        </span><span class="sd">"""Run the RemoveFinalReset pass on ``dag``.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            dag (DAGCircuit): the DAG to be optimized.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            DAGCircuit: the optimized DAG.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">for</span> <span class="n">output_node</span> <span class="ow">in</span> <span class="n">dag</span><span class="o">.</span><span class="n">output_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_node</span><span class="o">.</span><span class="n">wire</span><span class="p">,</span> <span class="n">Qubit</span><span class="p">):</span>
                 <span class="n">pred</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">dag</span><span class="o">.</span><span class="n">predecessors</span><span class="p">(</span><span class="n">output_node</span><span class="p">))</span>
@@ -321,19 +321,19 @@
 <div class="viewcode-block" id="ConsolidateResets">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets.html#qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ConsolidateResets</span><span class="p">(</span><span class="n">TransformationPass</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Consolidate a run duplicate resets in to a single reset.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Consolidate a run duplicate resets in to a single reset."""</span>
 
 <div class="viewcode-block" id="ConsolidateResets.run">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets.html#qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dag</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the ConsolidateResets pass on ``dag``.</span>
+<span class="w">        </span><span class="sd">"""Run the ConsolidateResets pass on ``dag``.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            dag (DAGCircuit): the DAG to be optimized.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            DAGCircuit: the optimized DAG.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">resets</span> <span class="o">=</span> <span class="n">dag</span><span class="o">.</span><span class="n">op_nodes</span><span class="p">(</span><span class="n">Reset</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">reset</span> <span class="ow">in</span> <span class="n">resets</span><span class="p">:</span>
             <span class="n">successor</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">dag</span><span class="o">.</span><span class="n">successors</span><span class="p">(</span><span class="n">reset</span><span class="p">))</span>

@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.automated_cut_finding - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -284,7 +284,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Function for automatically finding locations for gate and wire cuts.&quot;&quot;&quot;</span>
+<span class="sd">"""Function for automatically finding locations for gate and wire cuts."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -309,13 +309,13 @@
     <span class="n">optimization</span><span class="p">:</span> <span class="n">OptimizationParameters</span><span class="p">,</span>
     <span class="n">constraints</span><span class="p">:</span> <span class="n">DeviceConstraints</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">QuantumCircuit</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find cut locations in a circuit, given optimization parameters and cutting constraints.</span>
+<span class="w">    </span><span class="sd">"""Find cut locations in a circuit, given optimization parameters and cutting constraints.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        circuit: The circuit to cut. The input circuit may not contain gates acting</span>
 <span class="sd">            on more than two qubits.</span>
 <span class="sd">        optimization: Options for controlling optimizer behavior. Currently, the optimal</span>
-<span class="sd">            cuts are chosen using Dijkstra&#39;s best-first search algorithm.</span>
+<span class="sd">            cuts are chosen using Dijkstra's best-first search algorithm.</span>
 <span class="sd">        constraints: Constraints on how the circuit may be partitioned</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        A circuit containing :class:`.BaseQPDGate` instances. The subcircuits</span>
@@ -325,7 +325,7 @@
 <span class="sd">        A metadata dictionary:</span>
 <span class="sd">            - cuts: A list of length-2 tuples describing each cut in the output circuit.</span>
 <span class="sd">              The tuples are formatted as ``(cut_type: str, cut_id: int)``. The</span>
-<span class="sd">              cut ID is the index of the cut gate or wire in the output circuit&#39;s</span>
+<span class="sd">              cut ID is the index of the cut gate or wire in the output circuit's</span>
 <span class="sd">              ``data`` field.</span>
 <span class="sd">            - sampling_overhead: The sampling overhead incurred from cutting the specified</span>
 <span class="sd">              gates and wires.</span>
@@ -336,7 +336,7 @@
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: The input circuit contains a gate acting on more than 2 qubits.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">circuit_cco</span> <span class="o">=</span> <span class="n">qc_to_cco_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
     <span class="n">interface</span> <span class="o">=</span> <span class="n">SimpleGateList</span><span class="p">(</span><span class="n">circuit_cco</span><span class="p">)</span>
 
@@ -360,15 +360,15 @@
     <span class="n">opt_out</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">DisjointSubcircuitsState</span><span class="p">,</span> <span class="n">opt_out</span><span class="p">)</span>
     <span class="n">opt_out</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">opt_out</span><span class="o">.</span><span class="n">actions</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">opt_out</span><span class="o">.</span><span class="n">actions</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;CutTwoQubitGate&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"CutTwoQubitGate"</span><span class="p">:</span>
             <span class="n">gate_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">gate_spec</span><span class="o">.</span><span class="n">instruction_id</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># The cut-finding optimizer currently only supports 4 cutting</span>
             <span class="c1"># actions: {CutTwoQubitGate + these 3 wire cut types}</span>
             <span class="k">assert</span> <span class="n">action</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span>
-                <span class="s2">&quot;CutLeftWire&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;CutRightWire&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;CutBothWires&quot;</span><span class="p">,</span>
+                <span class="s2">"CutLeftWire"</span><span class="p">,</span>
+                <span class="s2">"CutRightWire"</span><span class="p">,</span>
+                <span class="s2">"CutBothWires"</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">wire_cut_actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 
@@ -389,7 +389,7 @@
         <span class="p">)</span>
         <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;CutBothWires&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"CutBothWires"</span><span class="p">:</span>
             <span class="c1"># There should be two wires specified in the action in this case</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
             <span class="n">qubit_id2</span> <span class="o">=</span> <span class="n">action</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
@@ -402,14 +402,14 @@
             <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># Return metadata describing the cut scheme</span>
-    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cuts&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"cuts"</span><span class="p">:</span> <span class="p">[]}</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circ_out</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;qpd_2q&quot;</span><span class="p">:</span>
-            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;cuts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;Gate Cut&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;cut_wire&quot;</span><span class="p">:</span>
-            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;cuts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;Wire Cut&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
-    <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;sampling_overhead&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt_out</span><span class="o">.</span><span class="n">upper_bound_gamma</span><span class="p">()</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;minimum_reached&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimum_reached</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"qpd_2q"</span><span class="p">:</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">"cuts"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">"Gate Cut"</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"cut_wire"</span><span class="p">:</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">"cuts"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">"Wire Cut"</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+    <span class="n">metadata</span><span class="p">[</span><span class="s2">"sampling_overhead"</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt_out</span><span class="o">.</span><span class="n">upper_bound_gamma</span><span class="p">()</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">metadata</span><span class="p">[</span><span class="s2">"minimum_reached"</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimum_reached</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">circ_out</span><span class="p">,</span> <span class="n">metadata</span></div>
 
@@ -419,11 +419,11 @@
 <a class="viewcode-back" href="../../apidocs/qiskit_addon_cutting.html#qiskit_addon_cutting.OptimizationParameters">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">OptimizationParameters</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specify parameters that control the optimization.</span>
+<span class="w">    </span><span class="sd">"""Specify parameters that control the optimization.</span>
 
 <span class="sd">    If either of the constraints specified by ``max_backjumps`` or ``max_gamma`` are exceeded, the search terminates but</span>
 <span class="sd">    nevertheless returns the result of a greedy best first search, which gives an *upper-bound* on gamma.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1">#: The seed to use when initializing Numpy random number generators in the best first search priority queue.</span>
     <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">OptimizationSettings</span><span class="p">()</span><span class="o">.</span><span class="n">seed</span>
@@ -446,21 +446,21 @@
 <a class="viewcode-back" href="../../apidocs/qiskit_addon_cutting.html#qiskit_addon_cutting.DeviceConstraints">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">DeviceConstraints</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specify the constraints (qubits per subcircuit) that must be respected.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Specify the constraints (qubits per subcircuit) that must be respected."""</span>
 
     <span class="n">qubits_per_subcircuit</span><span class="p">:</span> <span class="nb">int</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Post-init method for data class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Post-init method for data class."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">qubits_per_subcircuit</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;qubits_per_subcircuit must be a positive definite integer.&quot;</span>
+                <span class="s2">"qubits_per_subcircuit must be a positive definite integer."</span>
             <span class="p">)</span>
 
 <div class="viewcode-block" id="DeviceConstraints.get_qpu_width">
 <a class="viewcode-back" href="../../apidocs/qiskit_addon_cutting.html#qiskit_addon_cutting.DeviceConstraints.get_qpu_width">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_qpu_width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the number of qubits per subcircuit.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Return the number of qubits per subcircuit."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">qubits_per_subcircuit</span></div>
 </div>
 

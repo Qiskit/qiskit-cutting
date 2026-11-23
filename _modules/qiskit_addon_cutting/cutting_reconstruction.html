@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.cutting_reconstruction - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -284,7 +284,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Functions for reconstructing the results of circuit cutting experiments.&quot;&quot;&quot;</span>
+<span class="sd">"""Functions for reconstructing the results of circuit cutting experiments."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -315,7 +315,7 @@
     <span class="n">coefficients</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">WeightType</span><span class="p">]],</span>
     <span class="n">observables</span><span class="p">:</span> <span class="n">PauliList</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Reconstruct an expectation value from the results of the sub-experiments.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Reconstruct an expectation value from the results of the sub-experiments.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        results: The results from running the cutting subexperiments. If the cut circuit</span>
@@ -323,7 +323,7 @@
 <span class="sd">            a :class:`~qiskit.primitives.SamplerResult` instance or a dictionary mapping</span>
 <span class="sd">            a single partition to the results. If the circuit was partitioned and its</span>
 <span class="sd">            pieces were run separately, this argument should be a dictionary mapping partition labels</span>
-<span class="sd">            to the results from each partition&#39;s subexperiments.</span>
+<span class="sd">            to the results from each partition's subexperiments.</span>
 
 <span class="sd">            The subexperiment results are expected to be ordered in the same way the subexperiments</span>
 <span class="sd">            are ordered in the output of :func:`.generate_cutting_experiments` -- one result for every</span>
@@ -350,42 +350,42 @@
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: ``observables`` and ``results`` are of incompatible types.</span>
 <span class="sd">        ValueError: An input observable has a phase not equal to 1.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># If circuit was not separated, transform input data structures to</span>
     <span class="c1"># dictionary format.  Perform some input validation in either case.</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="p">(</span><span class="n">SamplerResult</span><span class="p">,</span> <span class="n">PrimitiveResult</span><span class="p">)):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;If observables is a PauliList, results must be a SamplerResult or PrimitiveResult instance.&quot;</span>
+                <span class="s2">"If observables is a PauliList, results must be a SamplerResult or PrimitiveResult instance."</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">phase</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observables</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;An input observable has a phase not equal to 1.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"An input observable has a phase not equal to 1."</span><span class="p">)</span>
         <span class="n">subobservables_by_subsystem</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">decompose_observables</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">observables</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">decompose_observables</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="s2">"A"</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">observables</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="p">)</span>
         <span class="n">results_dict</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">SamplerResult</span> <span class="o">|</span> <span class="n">PrimitiveResult</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">results</span>
+            <span class="s2">"A"</span><span class="p">:</span> <span class="n">results</span>
         <span class="p">}</span>
         <span class="n">expvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observables</span><span class="p">))</span>
 
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;If observables is a dictionary, results must also be a dictionary.&quot;</span>
+                <span class="s2">"If observables is a dictionary, results must also be a dictionary."</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="n">observables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">!=</span> <span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;The subsystem labels of the observables and results do not match.&quot;</span>
+                <span class="s2">"The subsystem labels of the observables and results do not match."</span>
             <span class="p">)</span>
         <span class="n">results_dict</span> <span class="o">=</span> <span class="n">results</span>
         <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">subobservable</span> <span class="ow">in</span> <span class="n">observables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">phase</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">subobservable</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;An input observable has a phase not equal to 1.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"An input observable has a phase not equal to 1."</span><span class="p">)</span>
         <span class="n">subobservables_by_subsystem</span> <span class="o">=</span> <span class="n">observables</span>
         <span class="n">expvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">observables</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]))</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;observables must be either a PauliList or dict.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"observables must be either a PauliList or dict."</span><span class="p">)</span>
 
     <span class="n">subsystem_observables</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">label</span><span class="p">:</span> <span class="n">ObservableCollection</span><span class="p">(</span><span class="n">subobservables</span><span class="p">)</span>
@@ -401,10 +401,10 @@
             <span class="n">current_result</span> <span class="o">=</span> <span class="n">current_result</span><span class="o">.</span><span class="n">quasi_dists</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_result</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">so</span><span class="o">.</span><span class="n">groups</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The number of subexperiments performed in subsystem &#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">current_result</span><span class="p">)</span><span class="si">}</span><span class="s2">) should equal the number of coefficients &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span><span class="si">}</span><span class="s2">) times the number of mutually commuting &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;subobservable groups (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">so</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span><span class="si">}</span><span class="s2">), but it does not.&quot;</span>
+                <span class="sa">f</span><span class="s2">"The number of subexperiments performed in subsystem '</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">' "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">current_result</span><span class="p">)</span><span class="si">}</span><span class="s2">) should equal the number of coefficients "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span><span class="si">}</span><span class="s2">) times the number of mutually commuting "</span>
+                <span class="sa">f</span><span class="s2">"subobservable groups (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">so</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span><span class="si">}</span><span class="s2">), but it does not."</span>
             <span class="p">)</span>
 
     <span class="c1"># Reconstruct the expectation values</span>
@@ -431,8 +431,8 @@
                     <span class="n">qpd_array</span> <span class="o">=</span> <span class="n">data_pub</span><span class="o">.</span><span class="n">qpd_measurements</span><span class="o">.</span><span class="n">array</span>
                     <span class="n">shots</span> <span class="o">=</span> <span class="n">qpd_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shots</span><span class="p">):</span>
-                        <span class="n">obs_outcomes</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">obs_array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
-                        <span class="n">qpd_outcomes</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">qpd_array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+                        <span class="n">obs_outcomes</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">obs_array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s2">"big"</span><span class="p">)</span>
+                        <span class="n">qpd_outcomes</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">qpd_array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s2">"big"</span><span class="p">)</span>
                         <span class="n">subsystem_expvals</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">shots</span><span class="p">)</span> <span class="o">*</span> <span class="n">_process_outcome_v2</span><span class="p">(</span>
                             <span class="n">cog</span><span class="p">,</span> <span class="n">obs_outcomes</span><span class="p">,</span> <span class="n">qpd_outcomes</span>
                         <span class="p">)</span>
@@ -451,7 +451,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_process_outcome</span><span class="p">(</span>
     <span class="n">cog</span><span class="p">:</span> <span class="n">CommutingObservableGroup</span><span class="p">,</span> <span class="n">outcome</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">typing</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process a single outcome of a QPD experiment with observables.</span>
+<span class="w">    </span><span class="sd">"""Process a single outcome of a QPD experiment with observables.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        cog: The observable set being measured by the current experiment</span>
@@ -461,7 +461,7 @@
 <span class="sd">        A 1D array of the observable measurements.  The elements of</span>
 <span class="sd">        this vector correspond to the elements of ``cog.commuting_observables``,</span>
 <span class="sd">        and each result will be either +1 or -1.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">num_meas_bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">_get_pauli_indices</span><span class="p">(</span><span class="n">cog</span><span class="p">))</span>
 
     <span class="n">outcome</span> <span class="o">=</span> <span class="n">_outcome_to_int</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
@@ -474,7 +474,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_process_outcome_v2</span><span class="p">(</span>
     <span class="n">cog</span><span class="p">:</span> <span class="n">CommutingObservableGroup</span><span class="p">,</span> <span class="n">obs_outcomes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">qpd_outcomes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">/</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">typing</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process a single outcome of a QPD experiment with observables.</span>
+<span class="w">    </span><span class="sd">"""Process a single outcome of a QPD experiment with observables.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        cog: The observable set being measured by the current experiment</span>
@@ -485,7 +485,7 @@
 <span class="sd">        A 1D array of the observable measurements.  The elements of</span>
 <span class="sd">        this vector correspond to the elements of ``cog.commuting_observables``,</span>
 <span class="sd">        and each result will be either +1 or -1.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># qpd_factor will be -1 or +1, depending on the overall parity of qpd</span>
     <span class="c1"># measurements.</span>
     <span class="n">qpd_factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">bit_count</span><span class="p">(</span><span class="n">qpd_outcomes</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
@@ -503,10 +503,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_outcome_to_int</span><span class="p">(</span><span class="n">outcome</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">outcome</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">outcome</span>
-    <span class="n">outcome</span> <span class="o">=</span> <span class="n">outcome</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">outcome</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">):</span>
-        <span class="n">outcome</span> <span class="o">=</span> <span class="n">outcome</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0b</span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">outcome</span> <span class="o">=</span> <span class="n">outcome</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">outcome</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"0"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">):</span>
+        <span class="n">outcome</span> <span class="o">=</span> <span class="n">outcome</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="sa">f</span><span class="s2">"0b</span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">outcome</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
         </article>

@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.instructions.move - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Two-qubit instruction representing a swap + single-qubit reset.&quot;&quot;&quot;</span>
+<span class="sd">"""Two-qubit instruction representing a swap + single-qubit reset."""</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">Instruction</span>
@@ -294,7 +294,7 @@
 <div class="viewcode-block" id="Move">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.instructions.Move.html#qiskit_addon_cutting.instructions.Move">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Move</span><span class="p">(</span><span class="n">Instruction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A two-qubit instruction representing a reset of the second qubit followed by a swap.</span>
+<span class="w">    </span><span class="sd">"""A two-qubit instruction representing a reset of the second qubit followed by a swap.</span>
 
 <span class="sd">    **Circuit Symbol:**</span>
 
@@ -341,19 +341,19 @@
 <span class="sd">       qc.append(Move(), [2, 1])</span>
 <span class="sd">       qc.ryy(np.pi / 4, 0, 1)</span>
 <span class="sd">       qc.rx(np.pi / 4, 3)</span>
-<span class="sd">       qc.draw(&quot;mpl&quot;)</span>
+<span class="sd">       qc.draw("mpl")</span>
 
 <span class="sd">    A full demonstration of the :class:`Move` instruction is available in `the</span>
 <span class="sd">    introductory tutorial on wire cutting</span>
 <span class="sd">    &lt;https://qiskit.github.io/qiskit-addon-cutting/tutorials/03_wire_cutting_via_move_instruction.html&gt;`__.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a :class:`Move` instruction.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">"""Create a :class:`Move` instruction."""</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">"move"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_define</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set definition to equivalent circuit.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Set definition to equivalent circuit."""</span>
         <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">qc</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>

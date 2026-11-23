@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.cutting_experiments - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -284,7 +284,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Functions for evaluating circuit cutting experiments.&quot;&quot;&quot;</span>
+<span class="sd">"""Functions for evaluating circuit cutting experiments."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -318,7 +318,7 @@
     <span class="nb">list</span><span class="p">[</span><span class="n">QuantumCircuit</span><span class="p">]</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">QuantumCircuit</span><span class="p">]],</span>
     <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">WeightType</span><span class="p">]],</span>
 <span class="p">]:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate cutting subexperiments and their associated coefficients.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Generate cutting subexperiments and their associated coefficients.</span>
 
 <span class="sd">    If the input, ``circuits``, is a :class:`QuantumCircuit` instance, the</span>
 <span class="sd">    output subexperiments will be contained within a 1D array, and ``observables`` is</span>
@@ -358,26 +358,26 @@
 <span class="sd">            appended to the gate label so they may be associated with other gates belonging</span>
 <span class="sd">            to the same cut.</span>
 <span class="sd">        ValueError: :class:`SingleQubitQPDGate` instances are not allowed in unseparated circuits.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuits</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;If the input circuits is a QuantumCircuit, the observables must be a PauliList.&quot;</span>
+            <span class="s2">"If the input circuits is a QuantumCircuit, the observables must be a PauliList."</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuits</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;If the input circuits are contained in a dictionary keyed by partition labels, the input observables must also be represented by such a dictionary.&quot;</span>
+            <span class="s2">"If the input circuits are contained in a dictionary keyed by partition labels, the input observables must also be represented by such a dictionary."</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">num_samples</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;num_samples must be at least 1.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"num_samples must be at least 1."</span><span class="p">)</span>
 
     <span class="c1"># Retrieving the unique bases, QPD gates, and decomposed observables is slightly different</span>
     <span class="c1"># depending on the format of the execute_experiments input args, but the 2nd half of this function</span>
     <span class="c1"># can be shared between both cases.</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuits</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">):</span>
         <span class="n">is_separated</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">subcircuit_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">circuits</span><span class="p">}</span>
+        <span class="n">subcircuit_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">circuits</span><span class="p">}</span>
         <span class="n">subobservables_by_subsystem</span> <span class="o">=</span> <span class="n">decompose_observables</span><span class="p">(</span>
-            <span class="n">observables</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">observables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">observables</span><span class="p">,</span> <span class="s2">"A"</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">observables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="p">)</span>
         <span class="n">subsystem_observables</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">label</span><span class="p">:</span> <span class="n">ObservableCollection</span><span class="p">(</span><span class="n">subobservables</span><span class="p">)</span>
@@ -385,7 +385,7 @@
         <span class="p">}</span>
         <span class="c1"># Gather the unique bases from the circuit</span>
         <span class="n">bases</span><span class="p">,</span> <span class="n">qpd_gate_ids</span> <span class="o">=</span> <span class="n">_get_bases</span><span class="p">(</span><span class="n">circuits</span><span class="p">)</span>
-        <span class="n">subcirc_qpd_gate_ids</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">qpd_gate_ids</span><span class="p">}</span>
+        <span class="n">subcirc_qpd_gate_ids</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">qpd_gate_ids</span><span class="p">}</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="n">is_separated</span> <span class="o">=</span> <span class="kc">True</span>
@@ -434,7 +434,7 @@
                 <span class="n">subexperiments_dict</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_qc</span><span class="p">)</span>
 
     <span class="c1"># Remove initial and final resets from the subexperiments.  This will</span>
-    <span class="c1"># enable the `Move` operation to work on backends that don&#39;t support</span>
+    <span class="c1"># enable the `Move` operation to work on backends that don't support</span>
     <span class="c1"># `Reset`, as long as qubits are not re-used.  See</span>
     <span class="c1"># https://github.com/Qiskit/qiskit-addon-cutting/issues/452.</span>
     <span class="c1"># While we are at it, we also consolidate each run of multiple resets</span>
@@ -461,8 +461,8 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_mapping_ids_by_partition</span><span class="p">(</span>
     <span class="n">circuits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get indices to the QPD gates in each subcircuit and relevant map ids.&quot;&quot;&quot;</span>
-    <span class="c1"># Collect QPDGate id&#39;s and relevant map id&#39;s for each subcircuit</span>
+<span class="w">    </span><span class="sd">"""Get indices to the QPD gates in each subcircuit and relevant map ids."""</span>
+    <span class="c1"># Collect QPDGate id's and relevant map id's for each subcircuit</span>
     <span class="n">subcirc_qpd_gate_ids</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">subcirc_map_ids</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">circuits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -471,15 +471,15 @@
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circ</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">SingleQubitQPDGate</span><span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">decomp_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">decomp_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                 <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;SingleQubitQPDGate instances in input circuit(s) must have their &quot;</span>
-                        <span class="s1">&#39;labels suffixed with &quot;_&lt;id&gt;&quot;, where &lt;id&gt; is the index of the cut &#39;</span>
-                        <span class="s2">&quot;relative to the other cuts in the circuit. For example, all &quot;</span>
-                        <span class="s2">&quot;SingleQubitQPDGates belonging to the same cut, N, should have labels &quot;</span>
-                        <span class="s1">&#39; formatted as &quot;&lt;your_label&gt;_N&quot;. This allows SingleQubitQPDGates &#39;</span>
-                        <span class="s2">&quot;belonging to the same cut to be sampled jointly.&quot;</span>
+                        <span class="s2">"SingleQubitQPDGate instances in input circuit(s) must have their "</span>
+                        <span class="s1">'labels suffixed with "_&lt;id&gt;", where &lt;id&gt; is the index of the cut '</span>
+                        <span class="s2">"relative to the other cuts in the circuit. For example, all "</span>
+                        <span class="s2">"SingleQubitQPDGates belonging to the same cut, N, should have labels "</span>
+                        <span class="s1">' formatted as "&lt;your_label&gt;_N". This allows SingleQubitQPDGates '</span>
+                        <span class="s2">"belonging to the same cut to be sampled jointly."</span>
                     <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
                 <span class="n">subcirc_qpd_gate_ids</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">])</span>
                 <span class="n">subcirc_map_ids</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decomp_id</span><span class="p">)</span>
@@ -491,13 +491,13 @@
     <span class="n">circuits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">],</span>
     <span class="n">subcirc_qpd_gate_ids</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">QPDBasis</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a list of each unique QPD basis across the subcircuits.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Get a list of each unique QPD basis across the subcircuits."""</span>
     <span class="c1"># Collect the bases corresponding to each decomposed operation</span>
     <span class="n">bases_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">subcirc</span> <span class="ow">in</span> <span class="n">subcirc_qpd_gate_ids</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">circuits</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">basis_id</span> <span class="ow">in</span> <span class="n">subcirc</span><span class="p">:</span>
-            <span class="n">decomp_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">basis_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">decomp_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">basis_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">bases_dict</span><span class="p">[</span><span class="n">decomp_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">basis_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">basis</span>
     <span class="n">bases</span> <span class="o">=</span> <span class="p">[</span><span class="n">bases_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">bases_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())]</span>
 
@@ -505,13 +505,13 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_bases</span><span class="p">(</span><span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">QPDBasis</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a list of each unique QPD basis in the circuit and the QPDGate indices.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Get a list of each unique QPD basis in the circuit and the QPDGate indices."""</span>
     <span class="n">bases</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">qpd_gate_ids</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">SingleQubitQPDGate</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;SingleQubitQPDGates are not supported in unseparable circuits.&quot;</span>
+                <span class="s2">"SingleQubitQPDGates are not supported in unseparable circuits."</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">TwoQubitQPDGate</span><span class="p">):</span>
             <span class="n">bases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
@@ -527,9 +527,9 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Append a new classical register for the given ``CommutingObservableGroup``.</span>
+<span class="w">    </span><span class="sd">"""Append a new classical register for the given ``CommutingObservableGroup``.</span>
 
-<span class="sd">    The new register will be named ``&quot;observable_measurements&quot;`` and will be</span>
+<span class="sd">    The new register will be named ``"observable_measurements"`` and will be</span>
 <span class="sd">    the final register in the returned circuit, i.e. ``retval.cregs[-1]``.</span>
 
 <span class="sd">    Args:</span>
@@ -539,13 +539,13 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        The modified circuit</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
         <span class="n">qc</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="n">pauli_indices</span> <span class="o">=</span> <span class="n">_get_pauli_indices</span><span class="p">(</span><span class="n">cog</span><span class="p">)</span>
 
-    <span class="n">obs_creg</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pauli_indices</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;observable_measurements&quot;</span><span class="p">)</span>
+    <span class="n">obs_creg</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pauli_indices</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"observable_measurements"</span><span class="p">)</span>
     <span class="n">qc</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">obs_creg</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">qc</span>
@@ -559,17 +559,17 @@
     <span class="n">qubit_locations</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Append measurement instructions for the given ``CommutingObservableGroup``.</span>
+<span class="w">    </span><span class="sd">"""Append measurement instructions for the given ``CommutingObservableGroup``.</span>
 
 <span class="sd">    The measurement results will be placed in a register with the name</span>
-<span class="sd">    ``&quot;observable_measurements&quot;``.  Such a register can be created by calling</span>
+<span class="sd">    ``"observable_measurements"``.  Such a register can be created by calling</span>
 <span class="sd">    :func:`_append_measurement_register` before calling the current function.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        qc: The quantum circuit</span>
 <span class="sd">        cog: The commuting observable set for which to construct measurements</span>
 <span class="sd">        qubit_locations: A ``Sequence`` whose length is the number of qubits</span>
-<span class="sd">            in the observables, where each element holds that qubit&#39;s corresponding</span>
+<span class="sd">            in the observables, where each element holds that qubit's corresponding</span>
 <span class="sd">            index in the circuit.  By default, the circuit and observables are assumed</span>
 <span class="sd">            to have the same number of qubits, and the identity map</span>
 <span class="sd">            (i.e., ``range(qc.num_qubits)``) is used.</span>
@@ -577,38 +577,38 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        The modified circuit</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">qubit_locations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># By default, the identity map.</span>
         <span class="k">if</span> <span class="n">qc</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">!=</span> <span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Quantum circuit qubit count (</span><span class="si">{</span><span class="n">qc</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">) does not match qubit &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;count of observable(s) (</span><span class="si">{</span><span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">).  &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;Try providing `qubit_locations` explicitly.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Quantum circuit qubit count (</span><span class="si">{</span><span class="n">qc</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">) does not match qubit "</span>
+                <span class="sa">f</span><span class="s2">"count of observable(s) (</span><span class="si">{</span><span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">).  "</span>
+                <span class="sa">f</span><span class="s2">"Try providing `qubit_locations` explicitly."</span>
             <span class="p">)</span>
         <span class="n">qubit_locations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubit_locations</span><span class="p">)</span> <span class="o">!=</span> <span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;qubit_locations has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubit_locations</span><span class="p">)</span><span class="si">}</span><span class="s2"> element(s) but the &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;observable(s) have </span><span class="si">{</span><span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubit(s).&quot;</span>
+                <span class="sa">f</span><span class="s2">"qubit_locations has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubit_locations</span><span class="p">)</span><span class="si">}</span><span class="s2"> element(s) but the "</span>
+                <span class="sa">f</span><span class="s2">"observable(s) have </span><span class="si">{</span><span class="n">cog</span><span class="o">.</span><span class="n">general_observable</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubit(s)."</span>
             <span class="p">)</span>
 
     <span class="c1"># Find observable_measurements register</span>
     <span class="k">for</span> <span class="n">reg</span> <span class="ow">in</span> <span class="n">qc</span><span class="o">.</span><span class="n">cregs</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">reg</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;observable_measurements&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">reg</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"observable_measurements"</span><span class="p">:</span>
             <span class="n">obs_creg</span> <span class="o">=</span> <span class="n">reg</span>
             <span class="k">break</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot locate &quot;observable_measurements&quot; register&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Cannot locate "observable_measurements" register'</span><span class="p">)</span>
 
     <span class="n">pauli_indices</span> <span class="o">=</span> <span class="n">_get_pauli_indices</span><span class="p">(</span><span class="n">cog</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">obs_creg</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pauli_indices</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s1">&#39;&quot;observable_measurements&quot; register is the wrong size &#39;</span>
-            <span class="s2">&quot;for the given commuting observable group &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">obs_creg</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pauli_indices</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="s1">'"observable_measurements" register is the wrong size '</span>
+            <span class="s2">"for the given commuting observable group "</span>
+            <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">obs_creg</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pauli_indices</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
@@ -638,7 +638,7 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_pauli_indices</span><span class="p">(</span><span class="n">cog</span><span class="p">:</span> <span class="n">CommutingObservableGroup</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the indices to qubits to be measured.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Return the indices to qubits to be measured."""</span>
     <span class="c1"># If the circuit has no measurements, the Sampler will fail.  So, we</span>
     <span class="c1"># measure one qubit as a temporary workaround to</span>
     <span class="c1"># https://github.com/Qiskit/qiskit-addon-cutting/issues/422</span>
@@ -651,7 +651,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_consolidate_resets</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Consolidate redundant resets into a single reset.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Consolidate redundant resets into a single reset."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
@@ -662,7 +662,7 @@
     <span class="n">remove_ids</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
         <span class="n">qargs</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">inst</span><span class="o">.</span><span class="n">qubits</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;reset&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"reset"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">resets</span><span class="p">[</span><span class="n">qargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
                 <span class="n">remove_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -680,7 +680,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_remove_resets_in_zero_state</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove resets if they are the first instruction on a qubit.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Remove resets if they are the first instruction on a qubit."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
@@ -689,7 +689,7 @@
     <span class="n">remove_ids</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
         <span class="n">qargs</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">inst</span><span class="o">.</span><span class="n">qubits</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;reset&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"reset"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">qargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">active_qubits</span><span class="p">:</span>
                 <span class="n">remove_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -708,18 +708,18 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_remove_final_resets</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove resets if they are the final instruction on a qubit.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Remove resets if they are the final instruction on a qubit."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="c1"># Keep up with whether we are at the end of a qubit</span>
-    <span class="c1"># We iterate in reverse, so all qubits begin in the &quot;end&quot; state</span>
+    <span class="c1"># We iterate in reverse, so all qubits begin in the "end" state</span>
     <span class="n">qubit_ended</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">))</span>
     <span class="n">remove_ids</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">num_inst</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">)):</span>
         <span class="n">qargs</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">inst</span><span class="o">.</span><span class="n">qubits</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;reset&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"reset"</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">qargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">qubit_ended</span><span class="p">:</span>
                 <span class="n">remove_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num_inst</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>

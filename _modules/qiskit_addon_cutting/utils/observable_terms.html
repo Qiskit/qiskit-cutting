@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.utils.observable_terms - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># that they have been altered from the originals.</span>
 
 <span class="c1"># Reminder: update the RST file in docs/apidocs when adding new interfaces.</span>
-<span class="sa">r</span><span class="sd">&quot;&quot;&quot;Utilities for working with the unique terms of a collection of :class:`~qiskit.quantum_info.SparsePauliOp`\ s.&quot;&quot;&quot;</span>
+<span class="sa">r</span><span class="sd">"""Utilities for working with the unique terms of a collection of :class:`~qiskit.quantum_info.SparsePauliOp`\ s."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -300,11 +300,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">gather_unique_observable_terms</span><span class="p">(</span>
     <span class="n">observables</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Pauli</span> <span class="o">|</span> <span class="n">SparsePauliOp</span><span class="p">]</span> <span class="o">|</span> <span class="n">PauliList</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PauliList</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inspect the contents of each observable to find and return the unique Pauli terms.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Inspect the contents of each observable to find and return the unique Pauli terms."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">observables</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">observables</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;observables list cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"observables list cannot be empty"</span><span class="p">)</span>
 
     <span class="n">pauli_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">pauli_set</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -324,14 +324,14 @@
         <span class="c1"># We create an empty PauliList with the correct number of qubits.  See</span>
         <span class="c1"># https://github.com/Qiskit/qiskit/pull/9770 for a proposal to make</span>
         <span class="c1"># this simpler in Qiskit.</span>
-        <span class="k">return</span> <span class="n">PauliList</span><span class="p">([</span><span class="s2">&quot;I&quot;</span> <span class="o">*</span> <span class="n">observables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">])[:</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">PauliList</span><span class="p">([</span><span class="s2">"I"</span> <span class="o">*</span> <span class="n">observables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">])[:</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">PauliList</span><span class="p">(</span><span class="n">pauli_list</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Cannot construct PauliList.  Do provided observables all have &quot;</span>
-            <span class="s2">&quot;the same number of qubits?&quot;</span>
+            <span class="s2">"Cannot construct PauliList.  Do provided observables all have "</span>
+            <span class="s2">"the same number of qubits?"</span>
         <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span></div>
 
 
@@ -351,8 +351,8 @@
             <span class="n">term_expval</span> <span class="o">=</span> <span class="n">term_expvals</span><span class="p">[</span><span class="n">pauli</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;An observable contains a Pauli term whose expectation value &quot;</span>
-                <span class="s2">&quot;was not provided.&quot;</span>
+                <span class="s2">"An observable contains a Pauli term whose expectation value "</span>
+                <span class="s2">"was not provided."</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
         <span class="n">rv</span> <span class="o">+=</span> <span class="n">coeff</span> <span class="o">*</span> <span class="n">term_expval</span>
     <span class="k">return</span> <span class="n">rv</span>
@@ -364,7 +364,7 @@
     <span class="n">observables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Pauli</span> <span class="o">|</span> <span class="n">SparsePauliOp</span><span class="p">]</span> <span class="o">|</span> <span class="n">PauliList</span><span class="p">,</span>
     <span class="n">term_expvals</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Pauli</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">complex</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">complex</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reconstruct the expectation values given the expectation value of each unique term.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Reconstruct the expectation values given the expectation value of each unique term."""</span>
     <span class="k">return</span> <span class="p">[</span>
         <span class="n">_reconstruct_observable_expval_from_terms</span><span class="p">(</span><span class="n">observable</span><span class="p">,</span> <span class="n">term_expvals</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">observable</span> <span class="ow">in</span> <span class="n">observables</span>

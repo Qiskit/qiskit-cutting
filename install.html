@@ -11,7 +11,7 @@
         <title>Installation instructions - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -331,7 +331,7 @@ pip<span class="w"> </span>install<span class="w"> </span>qiskit-addon-cutting
 notebook dependencies if you plan to run all the visualizations in the notebooks.
 If you plan on developing in the repository, install the <code class="docutils literal notranslate"><span class="pre">dev</span></code> dependencies.</p>
 <p>Adjust the options below to suit your needs.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tox<span class="w"> </span>notebook<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[notebook-dependencies,dev]&#39;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tox<span class="w"> </span>notebook<span class="w"> </span>-e<span class="w"> </span><span class="s1">'.[notebook-dependencies,dev]'</span>
 </pre></div>
 </div>
 <p>If you installed the notebook dependencies, you can get started with the addon by running the notebooks in the docs.</p>
@@ -360,7 +360,7 @@ before each <code class="docutils literal notranslate"><span class="pre">docker<
 <a class="reference external" href="https://github.com/containers/podman-compose">podman-compose</a>,
 the commands are:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>podman<span class="w"> </span>machine<span class="w"> </span>start
-podman-compose<span class="w"> </span>--podman-pull-args<span class="w"> </span>short-name-mode<span class="o">=</span><span class="s2">&quot;permissive&quot;</span><span class="w"> </span>build
+podman-compose<span class="w"> </span>--podman-pull-args<span class="w"> </span>short-name-mode<span class="o">=</span><span class="s2">"permissive"</span><span class="w"> </span>build
 podman-compose<span class="w"> </span>up
 </pre></div>
 </div>

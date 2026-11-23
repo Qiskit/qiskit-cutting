@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.qpd.instructions.qpd_gate - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Quasiprobability decomposition gates.&quot;&quot;&quot;</span>
+<span class="sd">"""Quasiprobability decomposition gates."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -297,7 +297,7 @@
 <div class="viewcode-block" id="BaseQPDGate">
 <a class="viewcode-back" href="../../../../stubs/qiskit_addon_cutting.qpd.BaseQPDGate.html#qiskit_addon_cutting.qpd.BaseQPDGate">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">BaseQPDGate</span><span class="p">(</span><span class="n">Instruction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for a gate to be decomposed using quasiprobability decomposition.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Base class for a gate to be decomposed using quasiprobability decomposition."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -308,7 +308,7 @@
         <span class="n">basis_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the instruction, and assign member variables.</span>
+<span class="w">        </span><span class="sd">"""Initialize the instruction, and assign member variables.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name: Name of the QPD gate.</span>
@@ -317,7 +317,7 @@
 <span class="sd">            basis_id: An index to the basis to which the gate should be decomposed.</span>
 <span class="sd">                This index is to ``basis.maps``.</span>
 <span class="sd">            label: An optional label for the gate</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="n">num_clbits</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 
         <span class="c1"># Set class fields shared by all QPDGates</span>
@@ -327,11 +327,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">basis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QPDBasis</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Quasiprobability decomposition basis.</span>
+<span class="w">        </span><span class="sd">"""Quasiprobability decomposition basis.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The basis to which the gate should be decomposed</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis</span><span class="p">:</span> <span class="n">QPDBasis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -339,30 +339,30 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">basis_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Index to basis used to decompose this gate.</span>
+<span class="w">        </span><span class="sd">"""Index to basis used to decompose this gate.</span>
 
 <span class="sd">        If set to None, a random basis will be chosen during decomposition.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The basis index</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis_id</span>
 
     <span class="nd">@basis_id</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">basis_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the index to the basis to which this gate should decompose.</span>
+<span class="w">        </span><span class="sd">"""Set the index to the basis to which this gate should decompose.</span>
 
 <span class="sd">        The index corresponds to self.basis.maps.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: basis_id is out of range.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">basis_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">basis_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_basis</span><span class="o">.</span><span class="n">maps</span><span class="p">)):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Basis ID out of range&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Basis ID out of range"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_basis_id</span> <span class="o">=</span> <span class="n">basis_id</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check equivalence for QPDGate class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Check equivalence for QPDGate class."""</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">basis</span>
@@ -377,7 +377,7 @@
 <div class="viewcode-block" id="TwoQubitQPDGate">
 <a class="viewcode-back" href="../../../../stubs/qiskit_addon_cutting.qpd.TwoQubitQPDGate.html#qiskit_addon_cutting.qpd.TwoQubitQPDGate">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TwoQubitQPDGate</span><span class="p">(</span><span class="n">BaseQPDGate</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Two qubit gate to be decomposed using quasiprobability decomposition.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Two qubit gate to be decomposed using quasiprobability decomposition."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -386,7 +386,7 @@
         <span class="n">basis_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the two qubit QPD gate.</span>
+<span class="w">        </span><span class="sd">"""Initialize the two qubit QPD gate.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            basis: A :mod:`.QPDBasis` to which the gate should be decomposed</span>
@@ -396,12 +396,12 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: The :class:`QPDBasis` acts on a number of qubits not equal to 2.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">basis</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;TwoQubitQPDGate only supports QPDBasis which act on two qubits.&quot;</span>
+                <span class="s2">"TwoQubitQPDGate only supports QPDBasis which act on two qubits."</span>
             <span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;qpd_2q&quot;</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">basis_id</span><span class="o">=</span><span class="n">basis_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">"qpd_2q"</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">basis_id</span><span class="o">=</span><span class="n">basis_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_define</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -422,9 +422,9 @@
 <a class="viewcode-back" href="../../../../stubs/qiskit_addon_cutting.qpd.TwoQubitQPDGate.html#qiskit_addon_cutting.qpd.TwoQubitQPDGate.from_instruction">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_instruction</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instruction</span><span class="p">:</span> <span class="n">Instruction</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a :class:`TwoQubitQPDGate` which represents a cut version of the given ``instruction``.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Create a :class:`TwoQubitQPDGate` which represents a cut version of the given ``instruction``."""</span>
         <span class="n">decomposition</span> <span class="o">=</span> <span class="n">QPDBasis</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">TwoQubitQPDGate</span><span class="p">(</span><span class="n">decomposition</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;cut_</span><span class="si">{</span><span class="n">instruction</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">TwoQubitQPDGate</span><span class="p">(</span><span class="n">decomposition</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"cut_</span><span class="si">{</span><span class="n">instruction</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
 </div>
 
 
@@ -432,11 +432,11 @@
 <div class="viewcode-block" id="SingleQubitQPDGate">
 <a class="viewcode-back" href="../../../../stubs/qiskit_addon_cutting.qpd.SingleQubitQPDGate.html#qiskit_addon_cutting.qpd.SingleQubitQPDGate">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SingleQubitQPDGate</span><span class="p">(</span><span class="n">BaseQPDGate</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single qubit gate to be decomposed using quasiprobability decomposition.</span>
+<span class="w">    </span><span class="sd">"""Single qubit gate to be decomposed using quasiprobability decomposition.</span>
 
 <span class="sd">    This gate could be part of a larger decomposition on many qubits, or it</span>
 <span class="sd">    could be a standalone single gate decomposition.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -446,11 +446,11 @@
         <span class="n">basis_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the single qubit QPD gate, and assign member variables.</span>
+<span class="w">        </span><span class="sd">"""Initialize the single qubit QPD gate, and assign member variables.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            basis: A :mod:`.QPDBasis` to which the gate should be decomposed</span>
-<span class="sd">            qubit_id: This gate&#39;s relative index to the decomposition which it belongs.</span>
+<span class="sd">            qubit_id: This gate's relative index to the decomposition which it belongs.</span>
 <span class="sd">                Single qubit QPDGates should have qubit_id 0 if they describe a local</span>
 <span class="sd">                decomposition, such as a wire cut.</span>
 <span class="sd">            basis_id: An index to the basis to which the gate should be decomposed.</span>
@@ -459,22 +459,22 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: qubit_id is out of range</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;qpd_1q&quot;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">basis_id</span><span class="o">=</span><span class="n">basis_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"qpd_1q"</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">basis_id</span><span class="o">=</span><span class="n">basis_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_qubit_id</span><span class="p">(</span><span class="n">qubit_id</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">qubit_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Relative qubit index of this gate in the overall decomposition.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Relative qubit index of this gate in the overall decomposition."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qubit_id</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_qubit_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qubit_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">qubit_id</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;&#39;qubit_id&#39; out of range. &#39;basis&#39; acts on </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits, &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;but &#39;qubit_id&#39; is </span><span class="si">{</span><span class="n">qubit_id</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="sa">f</span><span class="s2">"'qubit_id' out of range. 'basis' acts on </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits, "</span>
+                <span class="sa">f</span><span class="s2">"but 'qubit_id' is </span><span class="si">{</span><span class="n">qubit_id</span><span class="si">}</span><span class="s2">."</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_qubit_id</span> <span class="o">=</span> <span class="n">qubit_id</span>
 
@@ -492,11 +492,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_directive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;``True`` if the ``basis_id`` is unassigned, which implies this instruction cannot be decomposed.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""``True`` if the ``basis_id`` is unassigned, which implies this instruction cannot be decomposed."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis_id</span> <span class="ow">is</span> <span class="kc">None</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check equivalence for SingleQubitQPDGate class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Check equivalence for SingleQubitQPDGate class."""</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">qubit_id</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">qubit_id</span></div>
 
 </pre></div>

@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.qpd.qpd_basis - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -284,7 +284,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Class containing the basis in which to decompose an operation.&quot;&quot;&quot;</span>
+<span class="sd">"""Class containing the basis in which to decompose an operation."""</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
@@ -296,19 +296,19 @@
 <div class="viewcode-block" id="QPDBasis">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.qpd.QPDBasis.html#qiskit_addon_cutting.qpd.QPDBasis">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">QPDBasis</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basis in which to decompose an operation.</span>
+<span class="w">    </span><span class="sd">"""Basis in which to decompose an operation.</span>
 
 <span class="sd">    This class defines a basis in which a quantum operation will be decomposed. The</span>
 <span class="sd">    ideal (noise-free) quantum operation will be decomposed into a quasiprobabilistic</span>
 <span class="sd">    mixture of noisy circuits.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">maps</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Instruction</span><span class="p">],</span> <span class="o">...</span><span class="p">]],</span>
         <span class="n">coeffs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign member variables.</span>
+<span class="w">        </span><span class="sd">"""Assign member variables.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            maps: A sequence of tuples describing the noisy operations probabilistically</span>
@@ -318,7 +318,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_maps</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">coeffs</span>  <span class="c1"># Note: probabilities and kappa calculated through coeffs</span>
 
@@ -326,7 +326,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">maps</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Instruction</span><span class="p">],</span> <span class="o">...</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get mappings for each qubit in the decomposition.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get mappings for each qubit in the decomposition."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maps</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_maps</span><span class="p">(</span>
@@ -334,33 +334,33 @@
         <span class="n">maps</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Instruction</span><span class="p">],</span> <span class="o">...</span><span class="p">]],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of maps passed to QPDBasis must be nonzero.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Number of maps passed to QPDBasis must be nonzero."</span><span class="p">)</span>
         <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">num_qubits</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;QPDBasis supports at most two qubits.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"QPDBasis supports at most two qubits."</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="p">)):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">num_qubits</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;All maps passed to QPDBasis must act on the same number of &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;qubits. (Index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> contains a </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2">-tuple but should &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;contain a </span><span class="si">{</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">-tuple.)&quot;</span>
+                    <span class="sa">f</span><span class="s2">"All maps passed to QPDBasis must act on the same number of "</span>
+                    <span class="sa">f</span><span class="s2">"qubits. (Index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> contains a </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">maps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2">-tuple but should "</span>
+                    <span class="sa">f</span><span class="s2">"contain a </span><span class="si">{</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">-tuple.)"</span>
                 <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_maps</span> <span class="o">=</span> <span class="n">maps</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">num_qubits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get number of qubits that this decomposition acts on.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get number of qubits that this decomposition acts on."""</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_maps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">coeffs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Quasiprobability decomposition coefficients.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Quasiprobability decomposition coefficients."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coeffs</span>
 
     <span class="nd">@coeffs</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">coeffs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maps</span><span class="p">):</span>  <span class="c1"># Note: cross-validation</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Coefficients must be same length as maps.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Coefficients must be same length as maps."</span><span class="p">)</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_kappa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_probabilities</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kappa</span>
@@ -368,30 +368,30 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">probabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the probabilities on which the maps will be sampled.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get the probabilities on which the maps will be sampled."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_probabilities</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">kappa</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the square root of the sampling overhead.</span>
+<span class="w">        </span><span class="sd">"""Get the square root of the sampling overhead.</span>
 
 <span class="sd">        This quantity is the sum of the magnitude of the coefficients.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kappa</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">overhead</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the sampling overhead.</span>
+<span class="w">        </span><span class="sd">"""Get the sampling overhead.</span>
 
 <span class="sd">        The sampling overhead is the square of the sum of the magnitude of the coefficients.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kappa</span><span class="o">**</span><span class="mi">2</span>
 
 <div class="viewcode-block" id="QPDBasis.from_instruction">
 <a class="viewcode-back" href="../../../stubs/qiskit_addon_cutting.qpd.QPDBasis.html#qiskit_addon_cutting.qpd.QPDBasis.from_instruction">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_instruction</span><span class="p">(</span><span class="n">gate</span><span class="p">:</span> <span class="n">Instruction</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QPDBasis</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a :class:`.QPDBasis` object, given a supported operation.</span>
+<span class="w">        </span><span class="sd">"""Generate a :class:`.QPDBasis` object, given a supported operation.</span>
 
 <span class="sd">        This static method is provided for convenience; it simply</span>
 <span class="sd">        calls :func:`~qpd.decompositions.qpdbasis_from_instruction` under the hood.</span>
@@ -401,7 +401,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The newly-instantiated :class:`QPDBasis` object</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># pylint: disable=cyclic-import</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">.decompositions</span><span class="w"> </span><span class="kn">import</span> <span class="n">qpdbasis_from_instruction</span>
 
@@ -409,7 +409,7 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check equivalence for QPDBasis class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Check equivalence for QPDBasis class."""</span>
         <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coeffs</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">coeffs</span><span class="p">):</span>

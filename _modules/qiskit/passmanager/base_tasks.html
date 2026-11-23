@@ -10,7 +10,7 @@
         <title>qiskit.passmanager.base_tasks - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Baseclasses for the Qiskit passmanager optimization tasks.&quot;&quot;&quot;</span>
+<span class="sd">"""Baseclasses for the Qiskit passmanager optimization tasks."""</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
@@ -303,11 +303,11 @@
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Task</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An interface of the pass manager task.</span>
+<span class="w">    </span><span class="sd">"""An interface of the pass manager task.</span>
 
 <span class="sd">    The task takes a Qiskit IR, and outputs new Qiskit IR after some operation on it.</span>
 <span class="sd">    A task can rely on the :class:`.PropertySet` to communicate intermediate data among tasks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span>
@@ -316,7 +316,7 @@
         <span class="n">state</span><span class="p">:</span> <span class="n">PassManagerState</span><span class="p">,</span>
         <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PassManagerIR</span><span class="p">,</span> <span class="n">PassManagerState</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute optimization task for input Qiskit IR.</span>
+<span class="w">        </span><span class="sd">"""Execute optimization task for input Qiskit IR.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            passmanager_ir: Qiskit IR to optimize.</span>
@@ -325,23 +325,23 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Optimized Qiskit IR and state of the workflow.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">GenericPass</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class of a single pass manager task.</span>
+<span class="w">    </span><span class="sd">"""Base class of a single pass manager task.</span>
 
 <span class="sd">    A pass instance can read and write to the provided :class:`.PropertySet`,</span>
 <span class="sd">    and may modify the input pass manager IR.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">property_set</span> <span class="o">=</span> <span class="n">PropertySet</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of the pass.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Name of the pass."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span>
@@ -381,7 +381,7 @@
             <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="ow">or</span> <span class="n">passmanager_ir</span>
             <span class="k">if</span> <span class="n">run_state</span> <span class="o">!=</span> <span class="n">RunState</span><span class="o">.</span><span class="n">SKIP</span><span class="p">:</span>
                 <span class="n">running_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Pass: </span><span class="si">%s</span><span class="s2"> - </span><span class="si">%.5f</span><span class="s2"> (ms)&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">running_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Pass: </span><span class="si">%s</span><span class="s2"> - </span><span class="si">%.5f</span><span class="s2"> (ms)"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">running_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">callback</span><span class="p">(</span>
                         <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
@@ -397,7 +397,7 @@
         <span class="n">state</span><span class="p">:</span> <span class="n">PassManagerState</span><span class="p">,</span>
         <span class="n">run_state</span><span class="p">:</span> <span class="n">RunState</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PassManagerState</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update workflow status.</span>
+<span class="w">        </span><span class="sd">"""Update workflow status.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            state: Pass manager state to update.</span>
@@ -405,7 +405,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Updated pass manager state.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">state</span><span class="o">.</span><span class="n">workflow_status</span><span class="o">.</span><span class="n">previous_run</span> <span class="o">=</span> <span class="n">run_state</span>
         <span class="k">if</span> <span class="n">run_state</span> <span class="o">==</span> <span class="n">RunState</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">workflow_status</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -417,35 +417,35 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">passmanager_ir</span><span class="p">:</span> <span class="n">PassManagerIR</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PassManagerIR</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run optimization task.</span>
+<span class="w">        </span><span class="sd">"""Run optimization task.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            passmanager_ir: Qiskit IR to optimize.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Optimized Qiskit IR.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">BaseController</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class of controller.</span>
+<span class="w">    </span><span class="sd">"""Base class of controller.</span>
 
 <span class="sd">    A controller is built with a collection of pass manager tasks,</span>
 <span class="sd">    and a subclass provides a custom logic to choose next task to run.</span>
 <span class="sd">    Note a controller can be nested into another controller,</span>
-<span class="sd">    and a controller itself doesn&#39;t provide any subroutine to modify the input IR.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    and a controller itself doesn't provide any subroutine to modify the input IR.</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">options</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new flow controller.</span>
+<span class="w">        </span><span class="sd">"""Create new flow controller.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            options: Option for this flow controller.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
 
     <span class="nd">@abstractmethod</span>
@@ -453,15 +453,15 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">state</span><span class="p">:</span> <span class="n">PassManagerState</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Task</span><span class="p">,</span> <span class="n">PassManagerState</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;A custom logic to choose a next task to run.</span>
+<span class="w">        </span><span class="sd">"""A custom logic to choose a next task to run.</span>
 
 <span class="sd">        Controller subclass can consume the state to build a proper task pipeline.  The updated</span>
-<span class="sd">        state after a task execution will be fed back in as the &quot;return&quot; value of any ``yield``</span>
+<span class="sd">        state after a task execution will be fed back in as the "return" value of any ``yield``</span>
 <span class="sd">        statements.  This indicates the order of task execution is only determined at running time.</span>
 <span class="sd">        This method is not allowed to mutate the given state object.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            state: The state of the passmanager workflow at the beginning of this flow controller&#39;s</span>
+<span class="sd">            state: The state of the passmanager workflow at the beginning of this flow controller's</span>
 <span class="sd">                execution.</span>
 
 <span class="sd">        Receives:</span>
@@ -471,7 +471,7 @@
 
 <span class="sd">        Yields:</span>
 <span class="sd">            Task: Next task to run.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span>

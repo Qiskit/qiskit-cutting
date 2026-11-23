@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.cutting_decomposition - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -284,7 +284,7 @@
 <span class="c1"># copyright notice, and modified files need to carry a notice indicating</span>
 <span class="c1"># that they have been altered from the originals.</span>
 
-<span class="sd">&quot;&quot;&quot;Functions for decomposing circuits and observables for cutting.&quot;&quot;&quot;</span>
+<span class="sd">"""Functions for decomposing circuits and observables for cutting."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -308,7 +308,7 @@
 <div class="viewcode-block" id="PartitionedCuttingProblem">
 <a class="viewcode-back" href="../../apidocs/qiskit_addon_cutting.html#qiskit_addon_cutting.PartitionedCuttingProblem">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PartitionedCuttingProblem</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The result of decomposing and separating a circuit and observable(s).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""The result of decomposing and separating a circuit and observable(s)."""</span>
 
     <span class="n">subcircuits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">]</span>
     <span class="n">bases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">QPDBasis</span><span class="p">]</span>
@@ -321,7 +321,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">partition_circuit_qubits</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">partition_labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Hashable</span><span class="p">],</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Replace all nonlocal gates belonging to more than one partition with instances of :class:`.TwoQubitQPDGate`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Replace all nonlocal gates belonging to more than one partition with instances of :class:`.TwoQubitQPDGate`.</span>
 
 <span class="sd">    :class:`.TwoQubitQPDGate`\ s belonging to a single partition will not be affected.</span>
 
@@ -339,11 +339,11 @@
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: The length of partition_labels does not equal the number of qubits in the circuit.</span>
 <span class="sd">        ValueError: Input circuit contains unsupported gate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">qubits</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Length of partition_labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">) does not equal the number of qubits &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;in the input circuit (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="sa">f</span><span class="s2">"Length of partition_labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">) does not equal the number of qubits "</span>
+            <span class="sa">f</span><span class="s2">"in the input circuit (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">)."</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
@@ -351,7 +351,7 @@
 
     <span class="c1"># Find 2-qubit gates spanning more than one partition and replace it with a QPDGate.</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">instruction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">instruction</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;barrier&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instruction</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"barrier"</span><span class="p">:</span>
             <span class="k">continue</span>
         <span class="n">qubit_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit</span><span class="o">.</span><span class="n">find_bit</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="n">instruction</span><span class="o">.</span><span class="n">qubits</span><span class="p">]</span>
         <span class="n">partitions_spanned</span> <span class="o">=</span> <span class="p">{</span><span class="n">partition_labels</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">qubit_indices</span><span class="p">}</span>
@@ -366,8 +366,8 @@
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubit_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Decomposition is only supported for two-qubit gates. Cannot &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;decompose (</span><span class="si">{</span><span class="n">instruction</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="s2">"Decomposition is only supported for two-qubit gates. Cannot "</span>
+                <span class="sa">f</span><span class="s2">"decompose (</span><span class="si">{</span><span class="n">instruction</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)."</span>
             <span class="p">)</span>
 
         <span class="c1"># Nonlocal gate exists in two separate partitions</span>
@@ -386,7 +386,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">cut_gates</span><span class="p">(</span>
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">gate_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">QuantumCircuit</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">QPDBasis</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Transform specified gates into :class:`.TwoQubitQPDGate`\ s.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Transform specified gates into :class:`.TwoQubitQPDGate`\ s.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        circuit: The circuit containing gates to be decomposed</span>
@@ -399,10 +399,10 @@
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: The input circuit should contain no classical bits or registers.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">cregs</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_clbits</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Circuits input to cut_gates should contain no classical registers or bits.&quot;</span>
+            <span class="s2">"Circuits input to cut_gates should contain no classical registers or bits."</span>
         <span class="p">)</span>
     <span class="c1"># Replace specified gates with TwoQubitQPDGates</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
@@ -427,7 +427,7 @@
     <span class="n">partition_labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">observables</span><span class="p">:</span> <span class="n">PauliList</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PartitionedCuttingProblem</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Separate an input circuit and observable(s).</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Separate an input circuit and observable(s).</span>
 
 <span class="sd">    If ``partition_labels`` is provided, then qubits with matching partition</span>
 <span class="sd">    labels will be grouped together, and non-local gates spanning more than one</span>
@@ -464,24 +464,24 @@
 <span class="sd">        ValueError: An input observable has a phase not equal to 1.</span>
 <span class="sd">        ValueError: A qubit with a label of ``None`` is not idle</span>
 <span class="sd">        ValueError: The input circuit should contain no classical bits or registers.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">partition_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span> <span class="o">!=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;The number of partition labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">) must equal the number &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;of qubits in the circuit (</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="sa">f</span><span class="s2">"The number of partition labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">) must equal the number "</span>
+            <span class="sa">f</span><span class="s2">"of qubits in the circuit (</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">)."</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">observables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span>
         <span class="nb">len</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span> <span class="o">!=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observables</span>
     <span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;An input observable acts on a different number of qubits than the input circuit.&quot;</span>
+            <span class="s2">"An input observable acts on a different number of qubits than the input circuit."</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">observables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">phase</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observables</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;An input observable has a phase not equal to 1.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"An input observable has a phase not equal to 1."</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">cregs</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_clbits</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Circuits input to partition_problem should contain no classical registers or bits.&quot;</span>
+            <span class="s2">"Circuits input to partition_problem should contain no classical registers or bits."</span>
         <span class="p">)</span>
 
     <span class="c1"># Determine partition labels from connectivity (ignoring TwoQubitQPDGates)</span>
@@ -499,7 +499,7 @@
     <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">qpd_circuit</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="p">,</span> <span class="n">TwoQubitQPDGate</span><span class="p">):</span>
             <span class="n">bases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
-            <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># Separate the decomposed circuit into its subcircuits</span>
@@ -524,7 +524,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">decompose_observables</span><span class="p">(</span>
     <span class="n">observables</span><span class="p">:</span> <span class="n">PauliList</span><span class="p">,</span> <span class="n">partition_labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decompose a list of observables with respect to some qubit partition labels.</span>
+<span class="w">    </span><span class="sd">"""Decompose a list of observables with respect to some qubit partition labels.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        observables: A list of observables to decompose</span>
@@ -533,7 +533,7 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A dictionary mapping a partition to its associated sub-observables</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">qubits_by_subsystem</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">):</span>
         <span class="n">qubits_by_subsystem</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>

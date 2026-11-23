@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.utils.observable_grouping - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># that they have been altered from the originals.</span>
 
 <span class="c1"># Reminder: update the RST file in docs/apidocs when adding new interfaces.</span>
-<span class="sd">&quot;&quot;&quot;Module for conducting Pauli observable grouping.&quot;&quot;&quot;</span>
+<span class="sd">"""Module for conducting Pauli observable grouping."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -299,7 +299,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.iteration</span><span class="w"> </span><span class="kn">import</span> <span class="n">strict_zip</span>
 
 
-<span class="n">_I</span> <span class="o">=</span> <span class="n">Pauli</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">)</span>
+<span class="n">_I</span> <span class="o">=</span> <span class="n">Pauli</span><span class="p">(</span><span class="s2">"I"</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="observables_restricted_to_subsystem">
@@ -307,7 +307,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">observables_restricted_to_subsystem</span><span class="p">(</span>
     <span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">global_observables</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]</span> <span class="o">|</span> <span class="n">PauliList</span><span class="p">,</span> <span class="o">/</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]</span> <span class="o">|</span> <span class="n">PauliList</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Restrict each observable to its support on a given subsystem.</span>
+<span class="w">    </span><span class="sd">"""Restrict each observable to its support on a given subsystem.</span>
 
 <span class="sd">    A :class:`~qiskit.quantum_info.PauliList` will be returned if a :class:`~qiskit.quantum_info.PauliList` is provided; otherwise,</span>
 <span class="sd">    a ``list[Pauli]`` will be returned.</span>
@@ -321,10 +321,10 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        Each :class:`~qiskit.quantum_info.Pauli` restricted to the subsystem.</span>
 
-<span class="sd">    &gt;&gt;&gt; observables_restricted_to_subsystem([1, 3], PauliList([&quot;IXYZ&quot;, &quot;iZZXX&quot;]))</span>
-<span class="sd">    PauliList([&#39;IY&#39;, &#39;ZX&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; observables_restricted_to_subsystem([1, 3], PauliList(["IXYZ", "iZZXX"]))</span>
+<span class="sd">    PauliList(['IY', 'ZX'])</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">global_observables</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">):</span>
         <span class="c1"># Optimized path if we are given a PauliList</span>
         <span class="n">o</span> <span class="o">=</span> <span class="n">global_observables</span>
@@ -337,7 +337,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">most_general_observable</span><span class="p">(</span>
     <span class="n">commuting_observables</span><span class="p">:</span> <span class="n">PauliList</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Pauli</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pauli</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the most general observable from a sequence of commuting observables.</span>
+<span class="w">    </span><span class="sd">"""Return the most general observable from a sequence of commuting observables.</span>
 
 <span class="sd">    Given a list of operators over qubits claimed to be mutually qubit-wise</span>
 <span class="sd">    commuting, return the Pauli string we can measure to determine everything</span>
@@ -354,14 +354,14 @@
 <span class="sd">        ValueError: The input sequence is _not_ mutually qubit-wise commuting</span>
 <span class="sd">        ValueError: An observable has an unexpected ``num_qubits``</span>
 
-<span class="sd">    &gt;&gt;&gt; most_general_observable(PauliList([&quot;IIIZ&quot;, &quot;IIZZ&quot;, &quot;XIII&quot;]))</span>
-<span class="sd">    Pauli(&#39;XIZZ&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; most_general_observable(PauliList(["IIIZ", "IIZZ", "XIII"]))</span>
+<span class="sd">    Pauli('XIZZ')</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">commuting_observables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Empty input sequence: consider performing no experiments rather than an &quot;</span>
-            <span class="s2">&quot;experiment over the identity Pauli.&quot;</span>
+            <span class="s2">"Empty input sequence: consider performing no experiments rather than an "</span>
+            <span class="s2">"experiment over the identity Pauli."</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">num_qubits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">commuting_observables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -373,11 +373,11 @@
     <span class="c1"># https://github.com/Qiskit/qiskit/blob/061aee2685676271fd0860d0a2d699e36941ae5e/qiskit/primitives/backend_estimator.py#L403-L404</span>
     <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">obs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">commuting_observables</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">Pauli</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input sequence includes something other than a Pauli.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Input sequence includes something other than a Pauli."</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span> <span class="o">!=</span> <span class="n">num_qubits</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Observable </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> has incorrect qubit count (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="si">}</span><span class="s2"> rather than &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="sa">f</span><span class="s2">"Observable </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> has incorrect qubit count (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="si">}</span><span class="s2"> rather than "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">)."</span>
             <span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obs</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">o</span> <span class="o">==</span> <span class="n">_I</span><span class="p">:</span>
@@ -387,7 +387,7 @@
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">rv_i</span> <span class="o">!=</span> <span class="n">_I</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Observables are incompatible; cannot construct a single general observable.&quot;</span>
+                    <span class="s2">"Observables are incompatible; cannot construct a single general observable."</span>
                 <span class="p">)</span>
             <span class="n">rv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span>
     <span class="k">return</span> <span class="n">rv</span>
@@ -397,7 +397,7 @@
 <a class="viewcode-back" href="../../../apidocs/qiskit_addon_cutting.utils.observable_grouping.html#qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CommutingObservableGroup</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Set of mutually qubit-wise commuting observables.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Set of mutually qubit-wise commuting observables."""</span>
 
     <span class="c1">#: A single Pauli string that contains all qubit-wise measurements needed</span>
     <span class="c1">#: to measure everything in ``commuting_observables``.</span>
@@ -414,7 +414,7 @@
     <span class="n">pauli_bitmasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Post-init method for the data class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Post-init method for the data class."""</span>
         <span class="c1"># TODO(perf): These loops could be faster; see e.g. https://github.com/Qiskit/qiskit/blob/061aee2685676271fd0860d0a2d699e36941ae5e/qiskit/primitives/backend_estimator.py#L398-L413</span>
         <span class="n">pauli_indices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pauli</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">general_observable</span><span class="p">)</span> <span class="k">if</span> <span class="n">pauli</span> <span class="o">!=</span> <span class="n">_I</span>
@@ -423,8 +423,8 @@
         <span class="k">for</span> <span class="n">pauli</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">commuting_observables</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">pauli</span><span class="o">.</span><span class="n">phase</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;CommutingObservableGroup only supports Paulis with phase == 0. &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;(Value provided: </span><span class="si">{</span><span class="n">pauli</span><span class="o">.</span><span class="n">phase</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="s2">"CommutingObservableGroup only supports Paulis with phase == 0. "</span>
+                    <span class="sa">f</span><span class="s2">"(Value provided: </span><span class="si">{</span><span class="n">pauli</span><span class="o">.</span><span class="n">phase</span><span class="si">}</span><span class="s2">)"</span>
                 <span class="p">)</span>
             <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pauli_indices</span><span class="p">):</span>
@@ -433,29 +433,29 @@
             <span class="n">pauli_bitmasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
         <span class="c1"># https://docs.python.org/3/library/dataclasses.html#frozen-instances</span>
-        <span class="c1"># says &quot;when using frozen=True: __init__() cannot use simple assignment</span>
-        <span class="c1"># to initialize fields, and must use object.__setattr__().&quot;</span>
-        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;pauli_indices&quot;</span><span class="p">,</span> <span class="n">pauli_indices</span><span class="p">)</span>
-        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;pauli_bitmasks&quot;</span><span class="p">,</span> <span class="n">pauli_bitmasks</span><span class="p">)</span></div>
+        <span class="c1"># says "when using frozen=True: __init__() cannot use simple assignment</span>
+        <span class="c1"># to initialize fields, and must use object.__setattr__()."</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"pauli_indices"</span><span class="p">,</span> <span class="n">pauli_indices</span><span class="p">)</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"pauli_bitmasks"</span><span class="p">,</span> <span class="n">pauli_bitmasks</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="ObservableCollection">
 <a class="viewcode-back" href="../../../apidocs/qiskit_addon_cutting.utils.observable_grouping.html#qiskit_addon_cutting.utils.observable_grouping.ObservableCollection">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ObservableCollection</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of observables organized for efficient taking of measurements.</span>
+<span class="w">    </span><span class="sd">"""Collection of observables organized for efficient taking of measurements.</span>
 
 <span class="sd">    The observables are automatically organized into sets of mutually</span>
 <span class="sd">    qubit-wise commuting observables, each represented by a</span>
 <span class="sd">    :class:`.CommutingObservableGroup`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observables</span><span class="p">:</span> <span class="n">PauliList</span> <span class="o">|</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Pauli</span><span class="p">],</span> <span class="o">/</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign member variables.</span>
+<span class="w">        </span><span class="sd">"""Assign member variables.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            observables: Observables of interest</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># From here forward, we only need to process *unique* observables.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observables</span><span class="p">,</span> <span class="n">PauliList</span><span class="p">):</span>
             <span class="n">unique_observables</span> <span class="o">=</span> <span class="n">observables</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -464,7 +464,7 @@
 
         <span class="c1"># Group the desired observables into sets that mutually commute.  We</span>
         <span class="c1"># make it a list[list[Pauli]] rather than a list[PauliList] so that we</span>
-        <span class="c1"># can &quot;fix it up&quot; later, in case we have *multiple* general observables</span>
+        <span class="c1"># can "fix it up" later, in case we have *multiple* general observables</span>
         <span class="c1"># that can yield measurements of some of the observables.  That way, we</span>
         <span class="c1"># are maximizing information obtained from each shot.</span>
         <span class="n">commuting_groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
@@ -475,7 +475,7 @@
         <span class="c1"># qubit-wise commuting observables.</span>
         <span class="n">general_observables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_general_observables</span><span class="p">(</span><span class="n">commuting_groups</span><span class="p">)</span>
 
-        <span class="c1"># TODO: Fix up commuting_groups here.  Currently, Terra&#39;s</span>
+        <span class="c1"># TODO: Fix up commuting_groups here.  Currently, Terra's</span>
         <span class="c1"># `group_commuting` will put each observable into at most a single set.</span>
         <span class="c1"># However, a given observable might actually be mutually commuting with</span>
         <span class="c1"># more than one set.  Taking advantage of this will allow us to collect</span>
@@ -483,7 +483,7 @@
         <span class="c1"># quantum experiments.  To be specific, we should handle the particular</span>
         <span class="c1"># special case of this where multiple `general_observables` actually</span>
         <span class="c1"># _contain_ the observable.  This covers what is probably the most</span>
-        <span class="c1"># important case, evaluating the &quot;expectation value&quot; of the identity of</span>
+        <span class="c1"># important case, evaluating the "expectation value" of the identity of</span>
         <span class="c1"># the current subsystem (which really just involves keeping track of</span>
         <span class="c1"># QPD measurements only).</span>
         <span class="c1"># https://github.com/Qiskit/qiskit-addon-cutting/issues/155</span>
@@ -517,13 +517,13 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_general_observables</span><span class="p">(</span>
         <span class="n">commuting_subobservables</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]],</span> <span class="o">/</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Pauli</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct the most general observable from each set of mutually commuting observables.</span>
+<span class="w">        </span><span class="sd">"""Construct the most general observable from each set of mutually commuting observables.</span>
 
 <span class="sd">        In special cases, advanced users may want to subclass and override this</span>
 <span class="sd">        ``staticmethod`` in order to measure additional qubits than the default</span>
 <span class="sd">        for each general observable.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># NOTE: We _could_ make this return a PauliList instead of a</span>
         <span class="c1"># list[Pauli], but currently there is no clear benefit.</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">most_general_observable</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">commuting_subobservables</span><span class="p">]</span></div>
@@ -531,12 +531,12 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommutingObservableGroup</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;List of :class:`.CommutingObservableGroup`\ s which, together, contain all desired observables.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""List of :class:`.CommutingObservableGroup`\ s which, together, contain all desired observables."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Pauli</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dict which maps each :class:`~qiskit.quantum_info.Pauli` observable to a list of indices, ``(i, j)``, to commuting observables in ``groups``.</span>
+<span class="w">        </span><span class="sd">"""Get dict which maps each :class:`~qiskit.quantum_info.Pauli` observable to a list of indices, ``(i, j)``, to commuting observables in ``groups``.</span>
 
 <span class="sd">        For each element of the list, it means that the :class:`~qiskit.quantum_info.Pauli` is given by</span>
 <span class="sd">        the ``j``-th commuting observable in the ``i``-th group.</span>
@@ -545,7 +545,7 @@
 <span class="sd">        if multiple :class:`.CommutingObservableGroup` objects are compatible with the given</span>
 <span class="sd">        :class:`~qiskit.quantum_info.Pauli`.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lookup</span></div>
 
 </pre></div>

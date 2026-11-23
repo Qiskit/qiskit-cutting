@@ -10,7 +10,7 @@
         <title>qiskit_addon_cutting.utils.transforms - Qiskit addon: circuit cutting 0.10.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=3ee1c6c6" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=8ff9dcb6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/qiskit-sphinx-theme.css?v=fc6d6d93" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
@@ -285,7 +285,7 @@
 <span class="c1"># that they have been altered from the originals.</span>
 
 <span class="c1"># Reminder: update the RST file in docs/apidocs when adding new interfaces.</span>
-<span class="sd">&quot;&quot;&quot;Functions for manipulating quantum circuits.&quot;&quot;&quot;</span>
+<span class="sd">"""Functions for manipulating quantum circuits."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -309,7 +309,7 @@
 <div class="viewcode-block" id="SeparatedCircuits">
 <a class="viewcode-back" href="../../../apidocs/qiskit_addon_cutting.utils.transforms.html#qiskit_addon_cutting.utils.transforms.SeparatedCircuits">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SeparatedCircuits</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Named tuple for result of :func:`separate_circuit`.</span>
+<span class="w">    </span><span class="sd">"""Named tuple for result of :func:`separate_circuit`.</span>
 
 <span class="sd">    ``subcircuits`` is a dict of circuits, keyed by each partition label.</span>
 <span class="sd">    ``qubit_map`` is a list with length equal to the number of qubits in the original circuit.</span>
@@ -317,7 +317,7 @@
 <span class="sd">    of that qubit, together with the index of that qubit in the corresponding</span>
 <span class="sd">    subcircuit.  If the original qubit is unused and has been removed from the separated circuits,</span>
 <span class="sd">    then that tuple will be equal to ``(None, None)``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">subcircuits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">]</span>
     <span class="n">qubit_map</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span></div>
@@ -330,7 +330,7 @@
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>
     <span class="n">partition_labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SeparatedCircuits</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Separate the circuit into its disconnected components.</span>
+<span class="w">    </span><span class="sd">"""Separate the circuit into its disconnected components.</span>
 
 <span class="sd">    If ``partition_labels`` is provided, then the circuit will be separated</span>
 <span class="sd">    according to those labels.  A partition label of ``None`` is treated specially:</span>
@@ -345,20 +345,20 @@
 <span class="sd">    &gt;&gt;&gt; qc = QuantumCircuit(4)</span>
 <span class="sd">    &gt;&gt;&gt; _ = qc.x(0)</span>
 <span class="sd">    &gt;&gt;&gt; _ = qc.cx(1, 2)</span>
-<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, &quot;ABBA&quot;).subcircuits.keys()</span>
-<span class="sd">    dict_keys([&#39;A&#39;, &#39;B&#39;])</span>
-<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, &quot;ABBA&quot;).qubit_map</span>
-<span class="sd">    [(&#39;A&#39;, 0), (&#39;B&#39;, 0), (&#39;B&#39;, 1), (&#39;A&#39;, 1)]</span>
-<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, [&quot;A&quot;, &quot;B&quot;, &quot;B&quot;, None]).qubit_map</span>
-<span class="sd">    [(&#39;A&#39;, 0), (&#39;B&#39;, 0), (&#39;B&#39;, 1), (None, None)]</span>
+<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, "ABBA").subcircuits.keys()</span>
+<span class="sd">    dict_keys(['A', 'B'])</span>
+<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, "ABBA").qubit_map</span>
+<span class="sd">    [('A', 0), ('B', 0), ('B', 1), ('A', 1)]</span>
+<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, ["A", "B", "B", None]).qubit_map</span>
+<span class="sd">    [('A', 0), ('B', 0), ('B', 1), (None, None)]</span>
 <span class="sd">    &gt;&gt;&gt; separate_circuit(qc).subcircuits.keys()</span>
 <span class="sd">    dict_keys([0, 1])</span>
 <span class="sd">    &gt;&gt;&gt; separate_circuit(qc).qubit_map</span>
 <span class="sd">    [(0, 0), (1, 0), (1, 1), (None, None)]</span>
-<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, &quot;BAAC&quot;).subcircuits.keys()</span>
-<span class="sd">    dict_keys([&#39;B&#39;, &#39;A&#39;, &#39;C&#39;])</span>
-<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, &quot;BAAC&quot;).qubit_map</span>
-<span class="sd">    [(&#39;B&#39;, 0), (&#39;A&#39;, 0), (&#39;A&#39;, 1), (&#39;C&#39;, 0)]</span>
+<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, "BAAC").subcircuits.keys()</span>
+<span class="sd">    dict_keys(['B', 'A', 'C'])</span>
+<span class="sd">    &gt;&gt;&gt; separate_circuit(qc, "BAAC").qubit_map</span>
+<span class="sd">    [('B', 0), ('A', 0), ('A', 1), ('C', 0)]</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        circuit: The circuit to separate into disconnected subcircuits</span>
@@ -373,7 +373,7 @@
 <span class="sd">        ValueError: The number of partition labels does not equal the number of</span>
 <span class="sd">            qubits in the input circuit.</span>
 <span class="sd">        ValueError: Operation spans more than one partition.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Split barriers into single-qubit barriers before separating</span>
     <span class="n">new_qc</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">_split_barriers</span><span class="p">(</span><span class="n">new_qc</span><span class="p">)</span>
@@ -384,8 +384,8 @@
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span> <span class="o">!=</span> <span class="n">new_qc</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;The number of partition_labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">) must equal the number of &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;qubits in the input circuit (</span><span class="si">{</span><span class="n">new_qc</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">).&quot;</span>
+            <span class="sa">f</span><span class="s2">"The number of partition_labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">) must equal the number of "</span>
+            <span class="sa">f</span><span class="s2">"qubits in the input circuit (</span><span class="si">{</span><span class="n">new_qc</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">)."</span>
         <span class="p">)</span>
 
     <span class="n">qubit_map</span><span class="p">,</span> <span class="n">qubits_by_subsystem</span> <span class="o">=</span> <span class="n">_qubit_map_from_partition_labels</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">)</span>
@@ -415,7 +415,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">keep_idle_wires</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate partition labels from the connectivity of a quantum circuit.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Generate partition labels from the connectivity of a quantum circuit."""</span>
     <span class="c1"># Determine connectivity structure of the circuit</span>
     <span class="n">graph</span><span class="p">:</span> <span class="n">PyGraph</span> <span class="o">=</span> <span class="n">PyGraph</span><span class="p">()</span>
     <span class="n">graph</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">))</span>
@@ -464,11 +464,11 @@
     <span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Qubit</span><span class="p">],</span>
     <span class="n">cregs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ClassicalRegister</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a circuit from instructions.</span>
+<span class="w">    </span><span class="sd">"""Create a circuit from instructions.</span>
 
 <span class="sd">    This pipeline is designed to pass all the classical register(s) from the</span>
 <span class="sd">    uncut circuit to each subcircuit, so we add them here.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">()</span>
     <span class="n">circuit</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">QuantumRegister</span><span class="p">(</span><span class="n">bits</span><span class="o">=</span><span class="n">qubits</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">register</span> <span class="ow">in</span> <span class="n">cregs</span><span class="p">:</span>
@@ -482,7 +482,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_qubit_map_from_partition_labels</span><span class="p">(</span>
     <span class="n">partition_labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Hashable</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a qubit map given a qubit partitioning.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Generate a qubit map given a qubit partitioning."""</span>
     <span class="n">qubit_map</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">qubits_by_subsystem</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qubit_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">partition_labels</span><span class="p">):</span>
@@ -499,7 +499,7 @@
     <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>
     <span class="n">qubit_map</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a list of instructions for each partition of the circuit.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Generate a list of instructions for each partition of the circuit."""</span>
     <span class="n">unique_labels</span> <span class="o">=</span> <span class="n">unique_by_eq</span><span class="p">(</span><span class="n">label</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">qubit_map</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
     <span class="n">subcircuit_data_ids</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">label</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">unique_labels</span>
@@ -513,10 +513,10 @@
             <span class="n">partition_id</span> <span class="o">=</span> <span class="n">qubit_map</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">partition_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Operation &#39;</span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> acts on the &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">-th qubit, which was provided a partition label of `None`. &quot;</span>
-                    <span class="s2">&quot;If the partition label of a qubit is `None`, then that qubit &quot;</span>
-                    <span class="s2">&quot;cannot be used in the circuit.&quot;</span>
+                    <span class="sa">f</span><span class="s2">"Operation '</span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">' at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> acts on the "</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">-th qubit, which was provided a partition label of `None`. "</span>
+                    <span class="s2">"If the partition label of a qubit is `None`, then that qubit "</span>
+                    <span class="s2">"cannot be used in the circuit."</span>
                 <span class="p">)</span>
             <span class="n">partitions_spanned</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">partition_id</span><span class="p">)</span>
 
@@ -525,9 +525,9 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">partitions_spanned</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">partitions_spanned</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;The input circuit cannot be separated along specified partitions. &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;Operation &#39;</span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> spans more than &quot;</span>
-                <span class="s2">&quot;one partition.&quot;</span>
+                <span class="s2">"The input circuit cannot be separated along specified partitions. "</span>
+                <span class="sa">f</span><span class="s2">"Operation '</span><span class="si">{</span><span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">' at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> spans more than "</span>
+                <span class="s2">"one partition."</span>
             <span class="p">)</span>
 
         <span class="c1"># Record which partition id the current instruction is destined for</span>
@@ -538,12 +538,12 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_split_barriers</span><span class="p">(</span><span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mutate an input circuit to split barriers into single qubit barriers.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Mutate an input circuit to split barriers into single qubit barriers."""</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="p">):</span>
         <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;barrier&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">"barrier"</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">barrier_uuid</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;_uuid=</span><span class="si">{</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">barrier_uuid</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"_uuid=</span><span class="si">{</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
 
         <span class="c1"># Replace the N-qubit barrier with a single-qubit barrier</span>
         <span class="n">circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">CircuitInstruction</span><span class="p">(</span>
@@ -560,15 +560,15 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_combine_barriers</span><span class="p">(</span><span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mutate input circuit to combine barriers with common UUID labels into a single barrier.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Mutate input circuit to combine barriers with common UUID labels into a single barrier."""</span>
     <span class="c1"># Gather the indices to each group of barriers with common UUID labels</span>
     <span class="n">uuid_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span>
-            <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;barrier&quot;</span>
+            <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"barrier"</span>
             <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
             <span class="ow">and</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="ow">and</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_uuid=&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_uuid="</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="n">barrier_uuid</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">label</span>
             <span class="n">uuid_map</span><span class="p">[</span><span class="n">barrier_uuid</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
